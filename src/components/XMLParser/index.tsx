@@ -1,6 +1,6 @@
 "use client";
 
-import { parseFactura } from "@/src/lib/utils/xmlParser";
+import { parseFactura } from "@/src/lib/helpers/xmlParser";
 import { Factura } from "@/src/types/xmlParsers";
 import { FC, useState } from "react";
 import { useDropzone } from "react-dropzone";
