@@ -1,9 +1,9 @@
 import { lusitana } from "@/src/lib/utils/fonts";
-import { APP_ROUTES } from "@/src/routes";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import AcmeLogo from "./AcmeLogo";
+import { APP_ROUTES } from "@/src/routes/appRoutes";
 
 const HomePage: FC = () => {
   return (

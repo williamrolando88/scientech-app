@@ -1,4 +1,4 @@
-import { APP_ROUTES } from "@/src/routes";
+import { APP_ROUTES } from "@/src/routes/appRoutes";
 import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
