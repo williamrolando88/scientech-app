@@ -1,10 +1,27 @@
 import { sql } from "@vercel/postgres";
-import bcrypt from "bcrypt";
-import NextAuth from "next-auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import NextAuth, { User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import { authConfig } from "../lib/config/auth.config";
-import { User } from "../types/definitions";
+import { Firebase } from "../lib/config/firebase.config";
+
+export const logIn = async (
+  email: string,
+  password: string
+): Promise<User | null> => {
+  try {
+    const userCredentials = await signInWithEmailAndPassword(
+      Firebase.auth,
+      email,
+      password
+    );
+    const { displayName: name, uid: id } = userCredentials.user;
+    return { id, email, name };
+  } catch (error) {
+    return null;
+  }
+};
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
@@ -27,11 +44,9 @@ export const { auth, signIn, signOut } = NextAuth({
 
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
-          const user = await getUser(email);
-          if (!user) return null;
-          const passwordsMatch = await bcrypt.compare(password, user.password);
+          const user = await logIn(email, password);
 
-          if (passwordsMatch) return user;
+          return user;
         }
 
         console.log("Invalid credentials");
