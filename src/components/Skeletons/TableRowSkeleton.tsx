@@ -11,19 +11,19 @@ export function TableRowSkeleton() {
         </div>
       </td>
       {/* Email */}
-      <td className="whitespace-nowrap px-3 py-3">
+      <td className="whitespace-nowrap p-3">
         <div className="h-6 w-32 rounded bg-gray-100"></div>
       </td>
       {/* Amount */}
-      <td className="whitespace-nowrap px-3 py-3">
+      <td className="whitespace-nowrap p-3">
         <div className="h-6 w-16 rounded bg-gray-100"></div>
       </td>
       {/* Date */}
-      <td className="whitespace-nowrap px-3 py-3">
+      <td className="whitespace-nowrap p-3">
         <div className="h-6 w-16 rounded bg-gray-100"></div>
       </td>
       {/* Status */}
-      <td className="whitespace-nowrap px-3 py-3">
+      <td className="whitespace-nowrap p-3">
         <div className="h-6 w-16 rounded bg-gray-100"></div>
       </td>
       {/* Actions */}
