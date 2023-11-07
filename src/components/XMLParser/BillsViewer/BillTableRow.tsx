@@ -5,7 +5,7 @@ import { BillContentCell } from "./BillContentCell";
 import { BillTaxesCells } from "./BillTaxesCells";
 
 export const BillTableRow: FC<Factura> = ({ infoTributaria, infoFactura }) => {
-  const { ruc, razonSocial, estab, ptoEmi, codDoc } = infoTributaria;
+  const { razonSocial, estab, ptoEmi, codDoc } = infoTributaria;
 
   const {
     fechaEmision,
@@ -15,14 +15,13 @@ export const BillTableRow: FC<Factura> = ({ infoTributaria, infoFactura }) => {
 
   return (
     <TableRow>
-      <BillContentCell text={estab} />
-      <BillContentCell text={ptoEmi} />
-      <BillContentCell text={codDoc} />
-      <BillContentCell text={ruc} />
-      <BillContentCell text={razonSocial} />
-      <BillContentCell text={fechaEmision} />
+      <BillContentCell value={fechaEmision} />
+      <BillContentCell type="number" value={estab} />
+      <BillContentCell type="number" value={ptoEmi} />
+      <BillContentCell type="number" value={codDoc} />
+      <BillContentCell value={razonSocial.toUpperCase()} />
       <BillTaxesCells data={totalImpuesto} />
-      <BillContentCell text={importeTotal} />
+      <BillContentCell type="number" value={importeTotal} />
     </TableRow>
   );
 };
