@@ -11,9 +11,9 @@ export const BillTaxesCells: FC<BillTaxesCellsProps> = ({ data }) => {
 
     return (
       <>
-        <BillContentCell text={tax1.baseImponible} />
-        <BillContentCell text={tax2.baseImponible} />
-        <BillContentCell text={tax2.valor} />
+        <BillContentCell type="number" value={tax1.baseImponible} />
+        <BillContentCell type="number" value={tax2.baseImponible} />
+        <BillContentCell type="number" value={tax2.valor} />
       </>
     );
   }
@@ -21,18 +21,18 @@ export const BillTaxesCells: FC<BillTaxesCellsProps> = ({ data }) => {
   if (data.codigoPorcentaje === "0") {
     return (
       <>
-        <BillContentCell text={data.baseImponible} />
-        <BillContentCell text={"0"} />
-        <BillContentCell text={"0"} />
+        <BillContentCell type="number" value={data.baseImponible} />
+        <BillContentCell type="number" value={"0"} />
+        <BillContentCell type="number" value={"0"} />
       </>
     );
   }
 
   return (
     <>
-      <BillContentCell text={"0"} />
-      <BillContentCell text={data.baseImponible} />
-      <BillContentCell text={data.valor} />
+      <BillContentCell type="number" value={"0"} />
+      <BillContentCell type="number" value={data.baseImponible} />
+      <BillContentCell type="number" value={data.valor} />
     </>
   );
 };

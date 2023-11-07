@@ -18,12 +18,11 @@ const BillsViewer: FC<BillsViewerProps> = ({ bills }) => {
     <Table>
       <TableHead>
         <TableRow>
+          <TableHeaderCell>F. Emi</TableHeaderCell>
           <TableHeaderCell>Est.</TableHeaderCell>
           <TableHeaderCell>Emi.</TableHeaderCell>
           <TableHeaderCell>Doc.</TableHeaderCell>
-          <TableHeaderCell>Ruc</TableHeaderCell>
           <TableHeaderCell>Razón Social</TableHeaderCell>
-          <TableHeaderCell>F. Emi</TableHeaderCell>
           <TableHeaderCell>Subtotal 0%</TableHeaderCell>
           <TableHeaderCell>Subtotal 12%</TableHeaderCell>
           <TableHeaderCell>IVA 12%</TableHeaderCell>

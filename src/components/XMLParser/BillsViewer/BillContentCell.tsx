@@ -3,12 +3,16 @@ import { TableCell, Text } from "@tremor/react";
 import { FC } from "react";
 
 interface BillContentCellProps {
-  text?: string;
+  value: string | number;
+  type?: "string" | "number";
 }
-export const BillContentCell: FC<BillContentCellProps> = ({ text }) => {
+export const BillContentCell: FC<BillContentCellProps> = ({
+  value,
+  type = "string",
+}) => {
   return (
     <TableCell>
-      <Text>{text || ""}</Text>
+      <Text>{type === "number" ? parseFloat(String(value)) : value}</Text>
     </TableCell>
   );
 };
