@@ -17,6 +17,11 @@ module.exports = {
     },
     extend: {
       colors: {
+        scientech: {
+          primary: "#03a9f4",
+          secondary: "#455a64",
+          terciary: "#e0e0e0",
+        },
         // light mode
         tremor: {
           brand: {
