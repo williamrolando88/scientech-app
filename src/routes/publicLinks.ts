@@ -5,3 +5,37 @@ export const PUBLIC_LINKS: PublicLink[] = [
   { name: "Inicio", href: APP_ROUTES.public.root },
   { name: "Contacto", href: APP_ROUTES.public.contact },
 ];
+
+const socialMediaLinks = [
+  {
+    icon: "ant-design:facebook-filled",
+    href: "https://www.facebook.com/Scientech-ec-115557774894785/",
+  },
+  {
+    icon: "ant-design:instagram-filled",
+    href: "https://www.instagram.com/scientech_ecuador/",
+  },
+  {
+    icon: "ant-design:linkedin-filled",
+    href: "https://www.linkedin.com/company/scientech-ecuador/",
+  },
+];
+
+// *This array can only contain 2 elements always
+export const footerNavigation = [
+  {
+    title: "Empresa",
+    links: [{ name: "Contacto", href: APP_ROUTES.public.contact }],
+  },
+  {
+    title: "Links",
+    links: [
+      {
+        name: "Términos y Condiciones",
+        href: APP_ROUTES.public.termsAndConditions,
+      },
+      { name: "Política de Privacidad", href: APP_ROUTES.public.privacyPolicy },
+    ],
+    socialMediaLinks,
+  },
+];

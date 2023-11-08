@@ -3,15 +3,11 @@
 import { APP_ROUTES } from "@/src/routes/appRoutes";
 import { PUBLIC_LINKS } from "@/src/routes/publicLinks";
 import { Disclosure } from "@headlessui/react";
-import {
-  Bars3Icon,
-  UserCircleIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
+import Iconify from "../Shared/Iconify";
 import ScientechLogo from "../Shared/ScientechLogo";
 
 /**
@@ -29,7 +25,7 @@ const NavBar: FC = () => {
               type="button"
               className="flex items-center gap-1 rounded-full p-1 hover:text-white"
             >
-              <UserCircleIcon className="h-5" />
+              <Iconify icon="mdi:user-circle" />
               <span className="mr-1 text-sm">Iniciar Sesión</span>
             </button>
           </Link>
@@ -45,9 +41,9 @@ const NavBar: FC = () => {
                   <Disclosure.Button className="hover:bg-primary-dark inline-flex items-center justify-center rounded-md p-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
-                      <XMarkIcon className="h-5" />
+                      <Iconify icon="eva:close-fill" className="block" />
                     ) : (
-                      <Bars3Icon className="h-5" />
+                      <Iconify icon="eva:menu-fill" className="block" />
                     )}
                   </Disclosure.Button>
                 </div>
