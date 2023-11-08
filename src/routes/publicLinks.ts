@@ -6,7 +6,7 @@ export const PUBLIC_LINKS: PublicLink[] = [
   { name: "Contacto", href: APP_ROUTES.public.contact },
 ];
 
-const socialMediaLinks = [
+export const socialMediaLinks = [
   {
     icon: "ant-design:facebook-filled",
     href: "https://www.facebook.com/Scientech-ec-115557774894785/",
@@ -21,7 +21,7 @@ const socialMediaLinks = [
   },
 ];
 
-// *This array can only contain 2 elements always
+// !This array must contain only 2 elements
 export const footerNavigation = [
   {
     title: "Empresa",
@@ -36,6 +36,5 @@ export const footerNavigation = [
       },
       { name: "Política de Privacidad", href: APP_ROUTES.public.privacyPolicy },
     ],
-    socialMediaLinks,
   },
 ];
