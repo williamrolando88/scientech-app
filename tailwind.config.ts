@@ -16,6 +16,14 @@ module.exports = {
       },
     },
     extend: {
+      spacing: {
+        100: "25rem", // 400px
+        125: "31.25rem", // 500px
+        150: "37.5rem", // 600px
+        175: "43.75", // 700px
+        200: "50rem", // 800px
+        250: "62.5rem", // 1000px
+      },
       colors: {
         // Scientech brand colors
         primary: {
