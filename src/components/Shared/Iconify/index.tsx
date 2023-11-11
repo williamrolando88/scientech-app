@@ -4,17 +4,11 @@ import { Icon } from "@iconify/react";
 import { FC } from "react";
 
 interface Props {
-  /**
-   * Icon name from https://icon-sets.iconify.design/eva/arrow-left-fill/
-   * */
+  /** Icon name from https://icon-sets.iconify.design/eva/arrow-left-fill/ */
   icon: string;
-  /**
-   * Size in pixels
-   */
+  /** Size in pixels */
   size?: string;
-  /**
-   * Support className props, compatible with TailwindCSS
-   */
+  /** Support className props, compatible with TailwindCSS */
   className?: string;
 }
 

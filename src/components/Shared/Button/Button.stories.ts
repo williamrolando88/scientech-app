@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Button from ".";
+import Iconify from "../Iconify";
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Button> = {
   title: "Primitives/Button",
   component: Button,
@@ -16,5 +16,12 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     children: "Test Button",
+  },
+};
+
+export const WithIcons: Story = {
+  args: {
+    children: "Icons Button",
+    icon: Iconify({ icon: "eva:arrow-circle-up-fill" }),
   },
 };

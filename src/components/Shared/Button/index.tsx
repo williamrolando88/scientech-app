@@ -22,7 +22,7 @@ const Button: FC<Props> = ({
   return (
     <button
       className={clsx(
-        "flex items-center gap-2 rounded px-4 py-2 font-semibold",
+        "flex items-center justify-center gap-2 rounded px-4 py-2 font-semibold",
         {
           "bg-primary-default text-white hover:bg-primary-dark":
             variant === "primary",
