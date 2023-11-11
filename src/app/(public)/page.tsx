@@ -1,3 +1,4 @@
+import CardSection from "@/src/components/HomePage/CardSection";
 import HeroSection from "@/src/components/HomePage/HeroSection";
 import { Metadata } from "next";
 
@@ -9,7 +10,7 @@ export default function page() {
   return (
     <main className="mb-16 flex flex-col gap-20 lg:mb-40">
       <HeroSection />
-      {/* <CardSection /> */}
+      <CardSection />
       {/* <ProvidersLogos /> */}
       {/* <CTASection /> */}
       {/* <ClientsMarquee /> */}
