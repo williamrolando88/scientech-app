@@ -1,6 +1,5 @@
 import { logOut } from "@/src/lib/actions/auth";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
-import { PowerIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import NavLinks from "./Navlinks";
 
@@ -18,7 +17,6 @@ export default function SideNav() {
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
         <form action={logOut}>
           <button className="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
-            <PowerIcon className="w-6" />
             <div className="hidden md:block">Sign Out</div>
           </button>
         </form>
