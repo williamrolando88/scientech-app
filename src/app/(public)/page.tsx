@@ -1,3 +1,4 @@
+import CTASection from "@/src/components/HomePage/CTASection";
 import CardSection from "@/src/components/HomePage/CardSection";
 import HeroSection from "@/src/components/HomePage/HeroSection";
 import ProvidersLogos from "@/src/components/HomePage/ProvidersLogo";
@@ -13,7 +14,7 @@ export default function page() {
       <HeroSection />
       <CardSection />
       <ProvidersLogos />
-      {/* <CTASection /> */}
+      <CTASection />
       {/* <ClientsMarquee /> */}
     </main>
   );
