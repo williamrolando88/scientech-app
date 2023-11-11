@@ -1,6 +1,6 @@
 import Iconify from "@/src/components/Shared/Iconify";
 import ScientechLogo from "@/src/components/Shared/ScientechLogo";
-import { footerContent } from "@/src/constants/staticContent/footer";
+import { footerContent } from "@/src/constants/staticContent/homePage";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
 import { footerNavigation, socialMediaLinks } from "@/src/routes/publicLinks";
 import Link from "next/link";

@@ -1,3 +1,4 @@
+import ContactHero from "@/src/components/Public/ContactPage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
 function page() {
   return (
     <main className="mb-16 flex flex-col">
-      {/* <ContactHero /> */}
+      <ContactHero />
       {/* <ContactCTA /> */}
     </main>
   );
