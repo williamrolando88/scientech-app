@@ -1,4 +1,4 @@
-import XmlParser from "@/src/components/XMLParser";
+import XmlParser from "@/src/components/Private/XMLParser";
 
 const page = () => {
   return (

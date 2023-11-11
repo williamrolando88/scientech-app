@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { LayoutInterface } from "../../types/common";
 import SideNav from "./SideNav";
+import { LayoutInterface } from "@/src/types/common";
 
 const DashboardLayout: FC<LayoutInterface> = ({ children }) => {
   return (

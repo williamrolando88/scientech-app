@@ -1,6 +1,6 @@
-import Copyright from "@/src/components/PublicLayout/Copyright";
-import Footer from "@/src/components/PublicLayout/Footer";
-import NavBar from "@/src/components/PublicLayout/NavBar";
+import Copyright from "@/src/components/Public/PublicLayout/Copyright";
+import Footer from "@/src/components/Public/PublicLayout/Footer";
+import NavBar from "@/src/components/Public/PublicLayout/NavBar";
 import { LayoutInterface } from "@/src/types/common";
 import { FC } from "react";
 

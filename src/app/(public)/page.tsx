@@ -1,8 +1,8 @@
-import CTASection from "@/src/components/HomePage/CTASection";
-import CardSection from "@/src/components/HomePage/CardSection";
-import HeroSection from "@/src/components/HomePage/HeroSection";
-import ClientsMarquee from "@/src/components/HomePage/MarqueeSection";
-import ProvidersLogos from "@/src/components/HomePage/ProvidersLogo";
+import CTASection from "@/src/components/Public/HomePage/CTASection";
+import CardSection from "@/src/components/Public/HomePage/CardSection";
+import HeroSection from "@/src/components/Public/HomePage/HeroSection";
+import ClientsMarquee from "@/src/components/Public/HomePage/MarqueeSection";
+import ProvidersLogos from "@/src/components/Public/HomePage/ProvidersLogo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

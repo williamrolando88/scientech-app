@@ -7,8 +7,8 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
-import Iconify from "../Shared/Iconify";
-import ScientechLogo from "../Shared/ScientechLogo";
+import Iconify from "../../Shared/Iconify";
+import ScientechLogo from "../../Shared/ScientechLogo";
 
 /**
  * NavBar component used on the public Scientech page for navigation purposes

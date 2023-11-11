@@ -1,4 +1,4 @@
-import DashboardHome from "@/src/components/DashboardHome";
+import DashboardHome from "@/src/components/Private/DashboardHome";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

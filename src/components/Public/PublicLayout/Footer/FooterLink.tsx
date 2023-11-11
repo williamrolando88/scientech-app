@@ -1,6 +1,6 @@
+import Iconify from "@/src/components/Shared/Iconify";
 import Link from "next/link";
 import { FC } from "react";
-import Iconify from "../../Shared/Iconify";
 
 interface Props {
   /** Name of the link to show */

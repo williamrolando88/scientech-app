@@ -1,7 +1,7 @@
 "use client";
+import Button from "@/src/components/Shared/Button";
+import Iconify from "@/src/components/Shared/Iconify";
 import { useFormStatus } from "react-dom";
-import Button from "../../Shared/Button";
-import Iconify from "../../Shared/Iconify";
 
 export function LoginButton() {
   const { pending } = useFormStatus();

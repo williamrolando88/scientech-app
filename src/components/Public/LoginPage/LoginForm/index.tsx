@@ -1,10 +1,10 @@
 "use client";
 
+import Iconify from "@/src/components/Shared/Iconify";
 import { authenticate } from "@/src/lib/actions/auth";
 import { lusitana } from "@/src/lib/utils/fonts";
 import { FC, useState } from "react";
 import { useFormState } from "react-dom";
-import Iconify from "../../Shared/Iconify";
 import { LoginButton } from "./LoginButton";
 
 const LoginForm: FC = () => {
