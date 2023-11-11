@@ -1,20 +1,25 @@
-import clsx from "clsx";
-import { FC } from "react";
+import { ButtonHTMLAttributes, FC, ReactNode } from "react";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Prop to add an icon to the button */
+  icon?: ReactNode;
+  /** Indicates the icon position, default to `"start"` */
+  position?: "start" | "end";
 }
 
-const Button: FC<ButtonProps> = ({ children, className, ...rest }) => {
+/** Shortcut component to easily create buttons with icons */
+const Button: FC<Props> = ({
+  children,
+  icon,
+  className = "",
+  position = "start",
+  ...props
+}) => {
   return (
-    <button
-      {...rest}
-      className={clsx(
-        "flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50",
-        className
-      )}
-    >
+    <button className={"flex items-center gap-2" + " " + className} {...props}>
+      {icon && position === "start" && icon}
       {children}
+      {icon && position === "end" && icon}
     </button>
   );
 };
