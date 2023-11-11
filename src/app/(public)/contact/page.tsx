@@ -1,4 +1,4 @@
-import ContactHero from "@/src/components/Public/ContactPage";
+import ContactHero from "@/src/components/Public/ContactPage/ContactHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
