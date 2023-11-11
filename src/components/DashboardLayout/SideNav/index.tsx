@@ -2,7 +2,6 @@ import { logOut } from "@/src/lib/actions/auth";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import AcmeLogo from "../../HomePage/AcmeLogo";
 import NavLinks from "./Navlinks";
 
 export default function SideNav() {
@@ -12,9 +11,7 @@ export default function SideNav() {
         className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40"
         href={APP_ROUTES.public.root}
       >
-        <div className="w-32 text-white md:w-40">
-          <AcmeLogo />
-        </div>
+        <div className="w-32 text-white md:w-40">{/* <AcmeLogo /> */}</div>
       </Link>
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinks />

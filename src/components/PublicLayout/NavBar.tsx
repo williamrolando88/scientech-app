@@ -7,7 +7,6 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
-import Button from "../Shared/Button";
 import Iconify from "../Shared/Iconify";
 import ScientechLogo from "../Shared/ScientechLogo";
 
@@ -22,13 +21,10 @@ const NavBar: FC = () => {
       <div className="bg-secondary-dark">
         <div className="mx-auto flex max-w-7xl justify-end px-2 sm:px-6 lg:px-8">
           <Link href={APP_ROUTES.public.login} target="_blank">
-            <Button
-              type="button"
-              className="flex items-center gap-1 rounded-full p-1 hover:text-white"
-            >
+            <button className="flex items-center gap-1 rounded-full p-1 hover:text-white">
               <Iconify icon="mdi:user-circle" />
               <span className="mr-1 text-sm">Iniciar Sesión</span>
-            </Button>
+            </button>
           </Link>
         </div>
       </div>
