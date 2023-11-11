@@ -6,8 +6,8 @@ import { LayoutInterface } from "../types/common";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Acme Dashboard",
-    default: "Acme Dashboard",
+    template: "%s | Scientech Ecuador",
+    default: "Scientech Ecuador",
   },
 };
 

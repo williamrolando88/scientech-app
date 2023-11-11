@@ -17,7 +17,7 @@ const NavBar: FC = () => {
   const pathName = usePathname();
 
   return (
-    <section className="text-terciary-lighter z-50 md:sticky md:left-0 md:top-0">
+    <section className="z-50 text-terciary-lighter md:sticky md:left-0 md:top-0">
       <div className="bg-secondary-dark">
         <div className="mx-auto flex max-w-7xl justify-end px-2 sm:px-6 lg:px-8">
           <Link href={APP_ROUTES.public.login} target="_blank">
@@ -38,7 +38,7 @@ const NavBar: FC = () => {
               <div className="relative flex h-16 items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                   {/* Mobile menu button*/}
-                  <Disclosure.Button className="hover:bg-primary-dark inline-flex items-center justify-center rounded-md p-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 hover:bg-primary-dark hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <Iconify icon="eva:close-fill" className="block" />
@@ -49,10 +49,12 @@ const NavBar: FC = () => {
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
                   <div className="flex shrink-0 items-center">
-                    <ScientechLogo
-                      className="h-5 w-auto sm:block sm:h-6 lg:h-8"
-                      variant="white"
-                    />
+                    <Link href={APP_ROUTES.public.root}>
+                      <ScientechLogo
+                        className="h-5 w-auto sm:block sm:h-6 lg:h-8"
+                        variant="white"
+                      />
+                    </Link>
                   </div>
 
                   <div className="hidden sm:ml-6 sm:block">
