@@ -25,3 +25,10 @@ export const WithIcons: Story = {
     icon: Iconify({ icon: "eva:arrow-circle-up-fill" }),
   },
 };
+
+export const LargeButtons: Story = {
+  args: {
+    children: "Large Button",
+    size: "large",
+  },
+};

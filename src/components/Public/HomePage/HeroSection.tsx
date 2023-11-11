@@ -29,7 +29,7 @@ const HeroSection: FC = () => {
           <p>{heroSectionContent.subtitle}</p>
 
           <Link className="mt-4" href={APP_ROUTES.public.contact}>
-            <Button>
+            <Button size="large">
               <h5>{heroSectionContent.CTALabel}</h5>
             </Button>
           </Link>

@@ -4,10 +4,12 @@ import { ButtonHTMLAttributes, FC, ReactNode } from "react";
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Prop to add an icon to the button */
   icon?: ReactNode;
-  /** Indicates the icon position @default start */
+  /** Indicates the icon position */
   position?: "start" | "end";
-  /** Indicates the button color @default primary */
+  /** Indicates the button color */
   variant?: "primary" | "secondary" | "terciary";
+  /** Indicates the button size */
+  size?: "small" | "medium" | "large" | "extra-large";
 }
 
 /** Shortcut component to easily create buttons with icons */
@@ -17,12 +19,13 @@ const Button: FC<Props> = ({
   className = "",
   position = "start",
   variant = "primary",
+  size = "medium",
   ...props
 }) => {
   return (
     <button
       className={clsx(
-        "flex items-center justify-center gap-2 rounded px-4 py-2 font-semibold",
+        "flex items-center justify-center gap-2 rounded font-semibold",
         {
           "bg-primary-default text-white hover:bg-primary-dark":
             variant === "primary",
@@ -30,6 +33,10 @@ const Button: FC<Props> = ({
             variant === "secondary",
           "bg-terciary-default text-black hover:bg-terciary-dark":
             variant === "terciary",
+          "px-2 py-1": size === "small",
+          "px-4 py-2": size === "medium",
+          "px-6 py-3": size === "large",
+          "px-8 py-4": size === "extra-large",
         },
         className,
       )}
