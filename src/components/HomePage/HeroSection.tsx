@@ -14,7 +14,9 @@ const HeroSection: FC = () => {
           src={PICTURES.homePage.hero}
           alt="hero-picture"
           className="h-full w-auto object-cover md:h-auto md:w-full 2xl:-mt-40"
-          sizes="(max-width: 768px) 75vw, 100vw"
+          sizes="(max-width: 640px) 50vw, (max-width: 768px) 75vw, 100vw"
+          placeholder="blur"
+          priority
         />
       </div>
 
