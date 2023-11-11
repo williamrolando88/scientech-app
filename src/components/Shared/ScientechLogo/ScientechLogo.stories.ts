@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import ScientechLogo from ".";
 
-const meta: Meta<typeof ScientechLogo> = {
+const metaScientechLogo: Meta<typeof ScientechLogo> = {
   title: "Primitives/ScientechLogo",
   component: ScientechLogo,
   parameters: {
@@ -9,8 +9,8 @@ const meta: Meta<typeof ScientechLogo> = {
   },
 };
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default metaScientechLogo;
+type Story = StoryObj<typeof metaScientechLogo>;
 
 export const Primary: Story = {
   args: {
