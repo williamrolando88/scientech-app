@@ -1,6 +1,7 @@
 import CTASection from "@/src/components/HomePage/CTASection";
 import CardSection from "@/src/components/HomePage/CardSection";
 import HeroSection from "@/src/components/HomePage/HeroSection";
+import ClientsMarquee from "@/src/components/HomePage/MarqueeSection";
 import ProvidersLogos from "@/src/components/HomePage/ProvidersLogo";
 import { Metadata } from "next";
 
@@ -15,7 +16,7 @@ export default function page() {
       <CardSection />
       <ProvidersLogos />
       <CTASection />
-      {/* <ClientsMarquee /> */}
+      <ClientsMarquee />
     </main>
   );
 }
