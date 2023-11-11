@@ -17,7 +17,7 @@ const NavBar: FC = () => {
   const pathName = usePathname();
 
   return (
-    <section className="z-50 text-terciary-lighter md:sticky md:left-0 md:top-0">
+    <nav className="z-50 text-terciary-lighter md:sticky md:left-0 md:top-0">
       <div className="bg-secondary-dark">
         <div className="mx-auto flex max-w-7xl justify-end px-2 sm:px-6 lg:px-8">
           <Link href={APP_ROUTES.public.login} target="_blank">
@@ -103,7 +103,7 @@ const NavBar: FC = () => {
           </>
         )}
       </Disclosure>
-    </section>
+    </nav>
   );
 };
 

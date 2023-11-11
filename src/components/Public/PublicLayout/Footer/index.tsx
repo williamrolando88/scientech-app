@@ -12,8 +12,8 @@ import FooterLink from "./FooterLink";
  */
 const Footer: FC = () => {
   return (
-    <div className="bg-primary-default text-white">
-      <footer className="mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
+    <footer className="bg-primary-default text-white">
+      <div className="mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row">
           <Link href={APP_ROUTES.public.root}>
             <ScientechLogo className="h-6 sm:h-8 lg:h-10" variant="white" />
@@ -54,8 +54,8 @@ const Footer: FC = () => {
             </div>
           ))}
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
   );
 };
 
