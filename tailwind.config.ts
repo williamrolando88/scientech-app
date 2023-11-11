@@ -17,6 +17,33 @@ module.exports = {
     },
     extend: {
       colors: {
+        // Scientech brand colors
+        primary: {
+          lighter: "#b3e5fc",
+          light: "#4fc3f7",
+          default: "#03a9f4",
+          dark: "#0288d1",
+          darker: "#01579b",
+        },
+        secondary: {
+          lighter: "#cfd8dc",
+          light: "#90a4ae",
+          default: "#607d8b",
+          dark: "#455a64",
+          darker: "#263238",
+        },
+        terciary: {
+          lighter: "#f5f5f5",
+          light: "#e0e0e0",
+          default: "#9e9e9e",
+          dark: "#616161",
+          darker: "#212121",
+        },
+        scientech: {
+          primary: "#03a9f4",
+          secondary: "#455a64",
+          terciary: "#e0e0e0",
+        },
         // light mode
         tremor: {
           brand: {

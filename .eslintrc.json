@@ -8,6 +8,7 @@
     }
   ],
   "rules": {
+    "tailwindcss/classnames-order": 0,
     "no-unused-vars": "error",
     "no-console": "error"
   }

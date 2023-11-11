@@ -13,3 +13,8 @@ export type DashboardLink = {
   icon: LinkIcon;
   selected: LinkIcon;
 };
+
+export type PublicLink = {
+  name: string;
+  href: string;
+};
