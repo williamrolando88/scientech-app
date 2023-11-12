@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import { FC, InputHTMLAttributes, ReactNode } from "react";
+import { FC, ReactNode, TextareaHTMLAttributes } from "react";
 import Iconify from "../Iconify";
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   /** Shows the helper text as error */
   error?: boolean;
   /** Shows a helper text below the input */
@@ -15,7 +15,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 
-const InputField: FC<Props> = ({
+const TextAreaField: FC<Props> = ({
   helperText,
   iconPosition,
   error,
@@ -37,7 +37,7 @@ const InputField: FC<Props> = ({
       <div className="relative flex gap-2">
         {icon && iconPosition === "start" && icon}
 
-        <input
+        <textarea
           className="peer block w-full rounded-md border border-gray-200 px-4 py-2 text-sm outline-2 placeholder:text-gray-500"
           {...props}
         />
@@ -59,4 +59,4 @@ const InputField: FC<Props> = ({
   );
 };
 
-export default InputField;
+export default TextAreaField;

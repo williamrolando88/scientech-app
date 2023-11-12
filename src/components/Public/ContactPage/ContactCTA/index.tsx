@@ -10,8 +10,11 @@ const ContactCTA: FC = () => {
       <div className="flex flex-col gap-8 border md:flex-row md:gap-0">
         <div className="flex flex-col gap-8 bg-terciary-light p-4 pb-6 text-black md:flex-1 lg:max-w-md">
           <h2 className="text-3xl">{contactCTAContent.title}</h2>
+
           <p className="text-base">{contactCTAContent.pitch}</p>
+
           <h4 className="text-xl">{contactCTAContent.subtitle}</h4>
+
           {contactCTAContent.contactInfo.map((info) => (
             <>
               <div key={info.title} className="flex items-center gap-4">
@@ -33,6 +36,7 @@ const ContactCTA: FC = () => {
             </>
           ))}
         </div>
+
         <div className="bg-white p-4 md:flex-1 md:px-6 xl:flex xl:justify-end">
           <div className="h-full xl:w-150">
             <ContactForm />

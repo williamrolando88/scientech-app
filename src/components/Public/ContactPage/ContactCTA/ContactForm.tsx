@@ -3,6 +3,7 @@
 import Button from "@/src/components/Shared/Button";
 import Iconify from "@/src/components/Shared/Iconify";
 import InputField from "@/src/components/Shared/InputField";
+import TextAreaField from "@/src/components/Shared/TextAreaField";
 import { ContactUsFormSchema } from "@/src/lib/parsers/contactForm";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
 // import { sendToFormSpree } from "@services/contactUs/formSpree";
@@ -144,7 +145,8 @@ const ContactForm: FC = () => {
                   helperText={touched.companyName && errors.companyName}
                 />
 
-                <InputField
+                <TextAreaField
+                  rows={4}
                   name="message"
                   label="Información Adicional"
                   onChange={handleChange}
