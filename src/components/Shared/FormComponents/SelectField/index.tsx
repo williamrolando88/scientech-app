@@ -54,7 +54,7 @@ const SelectField: FC<Props> = ({
           )}
           {...props}
         >
-          <option value={""} disabled>
+          <option key={"id"} value={""} disabled>
             Seleccione una opción
           </option>
           {options.map((option) => (
