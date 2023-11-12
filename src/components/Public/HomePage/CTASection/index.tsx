@@ -1,4 +1,4 @@
-import Button from "@/src/components/Shared/Button";
+import Button from "@/src/components/Shared/FormComponents/Button";
 import { CTASectionContent } from "@/src/constants/staticContent/homePage";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
 import Link from "next/link";

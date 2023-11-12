@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Button from ".";
-import Iconify from "../Iconify";
+import Iconify from "../../Iconify";
 
 const metaButton: Meta<typeof Button> = {
   title: "Primitives/Button",
@@ -13,7 +13,7 @@ const metaButton: Meta<typeof Button> = {
 export default metaButton;
 type Story = StoryObj<typeof metaButton>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     children: "Test Button",
   },
@@ -26,7 +26,7 @@ export const WithIcons: Story = {
   },
 };
 
-export const LargeButtons: Story = {
+export const LargeButton: Story = {
   args: {
     children: "Large Button",
     size: "large",
