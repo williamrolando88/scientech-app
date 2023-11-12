@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import TextAreaField from ".";
 
-const metaInputField: Meta<typeof TextAreaField> = {
+const metaTextAreaField: Meta<typeof TextAreaField> = {
   title: "Primitives/TextAreaField",
   component: TextAreaField,
   parameters: {
@@ -9,8 +9,8 @@ const metaInputField: Meta<typeof TextAreaField> = {
   },
 };
 
-export default metaInputField;
-type Story = StoryObj<typeof metaInputField>;
+export default metaTextAreaField;
+type Story = StoryObj<typeof metaTextAreaField>;
 
 export const Default: Story = {
   args: {

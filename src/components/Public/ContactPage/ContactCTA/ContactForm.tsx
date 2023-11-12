@@ -3,6 +3,7 @@
 import Button from "@/src/components/Shared/Button";
 import Iconify from "@/src/components/Shared/Iconify";
 import InputField from "@/src/components/Shared/InputField";
+import SelectField from "@/src/components/Shared/SelectField";
 import TextAreaField from "@/src/components/Shared/TextAreaField";
 import { ContactUsFormSchema } from "@/src/lib/parsers/contactForm";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
@@ -14,6 +15,11 @@ import { FC, useState } from "react";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
 type MotiveOptions = "ventas" | "proyectos";
+
+const selectOptions = [
+  { value: "ventas", label: "Necesito cotizar un producto" },
+  { value: "proyectos", label: "Necesito ayuda para un proyecto" },
+];
 
 const contactFormInitialValues = {
   name: "",
@@ -116,22 +122,15 @@ const ContactForm: FC = () => {
                   />
                 </div>
 
-                {/* <HelperText helperText={touched.motive && errors.motive}>
-                  <Select
-                    name="motive"
-                    label="Motivo*"
-                    value={values.motive}
-                    error={touched.motive && !!errors.motive}
-                    onChange={(value) =>
-                      value && setValues({ ...values, motive: value })
-                    }
-                  >
-                    <Option value="ventas">Necesito cotizar un producto</Option>
-                    <Option value="proyectos">
-                      Necesito ayuda para un proyecto
-                    </Option>
-                  </Select>
-                </HelperText> */}
+                <SelectField
+                  options={selectOptions}
+                  name="motive"
+                  label="Motivo"
+                  value={values.motive}
+                  error={touched.motive && !!errors.motive}
+                  helperText={touched.motive ? errors.motive : ""}
+                  required
+                />
 
                 <InputField
                   name="companyName"
