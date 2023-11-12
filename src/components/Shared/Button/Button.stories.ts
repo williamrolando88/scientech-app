@@ -13,7 +13,7 @@ const metaButton: Meta<typeof Button> = {
 export default metaButton;
 type Story = StoryObj<typeof metaButton>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     children: "Test Button",
   },
@@ -26,7 +26,7 @@ export const WithIcons: Story = {
   },
 };
 
-export const LargeButtons: Story = {
+export const LargeButton: Story = {
   args: {
     children: "Large Button",
     size: "large",
