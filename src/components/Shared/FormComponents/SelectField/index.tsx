@@ -54,6 +54,9 @@ const SelectField: FC<Props> = ({
           )}
           {...props}
         >
+          <option value={""} disabled>
+            Seleccione una opción
+          </option>
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

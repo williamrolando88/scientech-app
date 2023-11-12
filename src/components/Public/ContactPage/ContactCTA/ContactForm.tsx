@@ -128,6 +128,7 @@ const ContactForm: FC = () => {
                   name="motive"
                   label="Motivo"
                   value={values.motive}
+                  onChange={handleChange}
                   error={touched.motive && !!errors.motive}
                   helperText={touched.motive ? errors.motive : ""}
                   required
