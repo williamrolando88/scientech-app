@@ -2,7 +2,7 @@ import { Factura } from "@/src/types/xmlParsers";
 import { xml2js } from "xml-js";
 import { FacturaParser } from "../parsers/facturaParsers";
 
-export const cleanObjectTree = (obj: any): any => {
+const cleanObjectTree = (obj: any): any => {
   if (obj === null || obj === undefined || typeof obj !== "object") {
     return obj;
   }
