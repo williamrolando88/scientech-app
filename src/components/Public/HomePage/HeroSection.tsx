@@ -4,7 +4,7 @@ import { APP_ROUTES } from "@/src/routes/appRoutes";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import Button from "../../Shared/Button";
+import Button from "../../Shared/FormComponents/Button";
 
 const HeroSection: FC = () => {
   return (

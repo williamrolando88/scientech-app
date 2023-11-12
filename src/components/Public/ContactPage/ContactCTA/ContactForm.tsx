@@ -1,10 +1,11 @@
 "use client";
 
-import Button from "@/src/components/Shared/Button";
+import Button from "@/src/components/Shared/FormComponents/Button";
+import HelperText from "@/src/components/Shared/FormComponents/HelperText";
+import InputField from "@/src/components/Shared/FormComponents/InputField";
+import SelectField from "@/src/components/Shared/FormComponents/SelectField";
+import TextAreaField from "@/src/components/Shared/FormComponents/TextAreaField";
 import Iconify from "@/src/components/Shared/Iconify";
-import InputField from "@/src/components/Shared/InputField";
-import SelectField from "@/src/components/Shared/SelectField";
-import TextAreaField from "@/src/components/Shared/TextAreaField";
 import { ContactUsFormSchema } from "@/src/lib/parsers/contactForm";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
 import { sendToFormSpree } from "@/src/services/client/formSpree";
@@ -85,7 +86,7 @@ const ContactForm: FC = () => {
               errors,
               touched,
               handleChange,
-              // setValues,
+              setValues,
               isSubmitting,
             }) => (
               <Form className="mt-2 flex flex-col gap-4">
@@ -152,13 +153,8 @@ const ContactForm: FC = () => {
                   required
                 />
 
-                {/* <HelperText
-                  helperText={
-                    touched.agreedTermsAndConditionsAndPrivacyPolicy &&
-                    errors.agreedTermsAndConditionsAndPrivacyPolicy
-                  }
-                >
-                  <div className="flex gap-2">
+                <div>
+                  <div className="flex items-baseline gap-2">
                     <input
                       type="checkbox"
                       name="agreedTermsAndConditionsAndPrivacyPolicy"
@@ -199,7 +195,19 @@ const ContactForm: FC = () => {
                       </Link>
                     </label>
                   </div>
-                </HelperText> */}
+
+                  <HelperText
+                    helperText={
+                      touched.agreedTermsAndConditionsAndPrivacyPolicy
+                        ? errors.agreedTermsAndConditionsAndPrivacyPolicy
+                        : ""
+                    }
+                    error={
+                      touched.agreedTermsAndConditionsAndPrivacyPolicy &&
+                      !!errors.agreedTermsAndConditionsAndPrivacyPolicy
+                    }
+                  />
+                </div>
 
                 <Button
                   className="self-end"

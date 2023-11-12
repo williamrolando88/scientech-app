@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { FC } from "react";
-import Iconify from "../Iconify";
+import Iconify from "../../Iconify";
 
 interface Props {
   /** The text to be shown */

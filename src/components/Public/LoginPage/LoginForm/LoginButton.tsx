@@ -1,5 +1,6 @@
 "use client";
-import Button from "@/src/components/Shared/Button";
+
+import Button from "@/src/components/Shared/FormComponents/Button";
 import Iconify from "@/src/components/Shared/Iconify";
 import { useFormStatus } from "react-dom";
 
