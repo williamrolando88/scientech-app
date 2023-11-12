@@ -13,7 +13,7 @@ const ScientechLogo: FC<Props> = ({ variant = "blue", className = "" }) => {
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 904.7 104.3"
-      className={clsx(className, {
+      className={clsx("h-10", className, {
         "fill-primary-default": variant === "blue",
         "fill-white": variant === "white",
       })}

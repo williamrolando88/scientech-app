@@ -15,7 +15,7 @@ const CTASection: FC = () => {
         <Link href={APP_ROUTES.public.contact}>
           <Button
             // color="light-blue"
-            className="max-w-fit !text-white hover:bg-primary-darker"
+            className="max-w-fit text-white hover:bg-primary-darker"
           >
             <h5 className="p-1 lg:p-2">{CTASectionContent.CTALabel}</h5>
           </Button>

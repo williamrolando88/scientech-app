@@ -1,9 +1,9 @@
 import { logOut } from "@/src/lib/actions/auth";
+import { APP_ROUTES } from "@/src/routes/appRoutes";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import AcmeLogo from "../../HomePage/AcmeLogo";
 import NavLinks from "./Navlinks";
-import { APP_ROUTES } from "@/src/routes/appRoutes";
 
 export default function SideNav() {
   return (
