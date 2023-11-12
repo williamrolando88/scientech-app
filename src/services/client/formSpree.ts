@@ -2,7 +2,14 @@
 
 import { ContactUsFormSchema } from "@/src/lib/parsers/contactForm";
 import { validateFormData } from "@/src/lib/utils/validateFormData";
+import { APP_ROUTES } from "@/src/routes/appRoutes";
 import { ContactUsForm, MotiveOptions } from "@/src/types/contactForm";
+import { redirect } from "next/navigation";
+
+export type State = {
+  errors?: Record<string, string[]>;
+  message?: string | null;
+};
 
 const getUrl = (motive: MotiveOptions) => {
   switch (motive) {
@@ -13,11 +20,8 @@ const getUrl = (motive: MotiveOptions) => {
   }
 };
 
-export const sendToFormSpree = async (formData: FormData) => {
+export const sendToFormSpree = async (_: State, formData: FormData) => {
   const motive = formData.get("motive");
-
-  // eslint-disable-next-line no-console
-  console.log("formData: ", formData);
 
   const { data, errors, message } = validateFormData<ContactUsForm>(
     formData,
@@ -50,27 +54,9 @@ export const sendToFormSpree = async (formData: FormData) => {
     },
   });
 
-  return response.status;
+  if (response.status !== 200) {
+    return { message: `${response.status}. Something went wrong` };
+  }
+
+  redirect(APP_ROUTES.public.contact + "?submitted=true");
 };
-
-// export const sendToFormSpree = async (formInput: ContactUsForm) => {
-//   const { motive, ...form } = formInput;
-//   const url = getUrl(motive as MotiveOptions);
-
-//   const body = new FormData();
-
-//   Object.entries(form).forEach((entry) => {
-//     // @ts-expect-error - must allow having true value
-//     body.append(...entry);
-//   });
-
-//   const response = await fetch(url, {
-//     method: "POST",
-//     body,
-//     headers: {
-//       Accept: "application/json",
-//     },
-//   });
-
-//   return response.status;
-// };

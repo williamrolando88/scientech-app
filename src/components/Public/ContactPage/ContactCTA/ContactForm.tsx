@@ -8,30 +8,27 @@ import Iconify from "@/src/components/Shared/Iconify";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
 import { sendToFormSpree } from "@/src/services/client/formSpree";
 import Link from "next/link";
-import { FC, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { FC } from "react";
+import { useFormState } from "react-dom";
 
 const selectOptions = [
   { value: "ventas", label: "Necesito cotizar un producto" },
   { value: "proyectos", label: "Necesito ayuda para un proyecto" },
 ];
 
-// const contactFormInitialValues = {
-//   name: "",
-//   email: "",
-//   motive: "",
-//   phone: "",
-//   companyName: "",
-//   message: "",
-//   agreedTermsAndConditionsAndPrivacyPolicy: false,
-// };
+const initialState = { message: null, errors: {} };
 
 const ContactForm: FC = () => {
-  const [formSubmitted] = useState(false);
-  // const [formSubmitted, setFormSubmitted] = useState(false);
+  const searchParams = useSearchParams();
+  // eslint-disable-next-line no-unused-vars
+  const [_, dispatch] = useFormState(sendToFormSpree, initialState);
+
+  const submitted = searchParams.get("submitted");
 
   return (
     <div className="flex h-full flex-col justify-center">
-      {formSubmitted ? (
+      {submitted ? (
         <div className="flex h-full flex-col items-center justify-center">
           <Iconify
             className="text-green-600"
@@ -48,31 +45,8 @@ const ContactForm: FC = () => {
       ) : (
         <>
           <em className="text-xs font-normal">*Información requerida</em>
-          {/* <Formik
-            initialValues={contactFormInitialValues}
-            validationSchema={toFormikValidationSchema(ContactUsFormSchema)}
-            onSubmit={async (values, actions) => {
-              const status = await sendToFormSpree(values);
 
-              actions.setSubmitting(false);
-
-              if (status === 200) {
-                setFormSubmitted(true);
-                actions.resetForm();
-              }
-            }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              setValues,
-              isSubmitting,
-            }) => (
-            )}
-          </Formik> */}
-          <form className="mt-2 flex flex-col gap-4" action={sendToFormSpree}>
+          <form className="mt-2 flex flex-col gap-4" action={dispatch}>
             <InputField name="name" label="Nombre" required />
 
             <div className="flex flex-col gap-4 lg:flex-row">
@@ -128,8 +102,6 @@ const ContactForm: FC = () => {
                   </Link>
                 </label>
               </div>
-
-              {/* <HelperText helperText={} error={} /> */}
             </div>
 
             <Button className="self-end" type="submit">
