@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { FC, ReactNode, SelectHTMLAttributes } from "react";
-import Iconify from "../Iconify";
+import HelperText from "../HelperText";
 
 interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
   /** Shows the helper text as error */
@@ -64,16 +64,7 @@ const SelectField: FC<Props> = ({
         {icon && iconPosition === "end" && icon}
       </div>
 
-      {helperText && (
-        <div
-          className={clsx("flex items-center gap-1", {
-            "text-red-500": error,
-          })}
-        >
-          <Iconify icon="eva:alert-circle-outline" />
-          <p className="text-xs italic">{helperText}</p>
-        </div>
-      )}
+      <HelperText helperText={helperText} error={error} />
     </div>
   );
 };
