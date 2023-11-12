@@ -24,10 +24,10 @@ const InputField: FC<Props> = ({
   ...inputProps
 }) => {
   return (
-    <div>
+    <div className="flex w-full flex-col gap-1">
       {label && (
         <label
-          className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+          className="block text-xs font-medium text-gray-900"
           htmlFor={inputProps.id}
         >
           {`${label}${inputProps.required ? "*" : ""}`}
@@ -47,7 +47,7 @@ const InputField: FC<Props> = ({
 
       {helperText && (
         <div
-          className={clsx("mt-1 flex items-center gap-1", {
+          className={clsx("flex items-center gap-1", {
             "text-red-500": error,
           })}
         >
