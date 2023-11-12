@@ -1,3 +1,4 @@
+import ContactCTA from "@/src/components/Public/ContactPage/ContactCTA";
 import ContactHero from "@/src/components/Public/ContactPage/ContactHero";
 import { Metadata } from "next";
 
@@ -9,7 +10,7 @@ function page() {
   return (
     <main className="mb-16 flex flex-col">
       <ContactHero />
-      {/* <ContactCTA /> */}
+      <ContactCTA />
     </main>
   );
 }

@@ -6,7 +6,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   /** Shows the helper text as error */
   error?: boolean;
   /** Shows a helper text below the input */
-  helperText?: string;
+  helperText?: string | boolean;
   /** Adds an icon to the field */
   icon?: ReactNode;
   /** Indicates the icon position */
@@ -30,7 +30,7 @@ const InputField: FC<Props> = ({
           className="mb-3 mt-5 block text-xs font-medium text-gray-900"
           htmlFor={inputProps.id}
         >
-          {label}
+          {`${label}${inputProps.required ? "*" : ""}`}
         </label>
       )}
 
