@@ -27,7 +27,9 @@ const InputField: FC<Props> = ({
     <div className="flex w-full flex-col gap-1">
       {label && (
         <label
-          className="block text-xs font-medium text-gray-900"
+          className={clsx("block text-xs font-medium text-gray-900", {
+            "text-red-500": error,
+          })}
           htmlFor={props.id}
         >
           {`${label}${props.required ? "*" : ""}`}
@@ -38,7 +40,12 @@ const InputField: FC<Props> = ({
         {icon && iconPosition === "start" && icon}
 
         <input
-          className="peer block w-full rounded-md border border-gray-200 px-4 py-2 text-sm outline-2 placeholder:text-gray-500"
+          className={clsx(
+            "peer block w-full rounded-md border border-gray-200 px-4 py-2 text-sm outline-2 placeholder:text-gray-500",
+            {
+              "border-red-500 text-red-500 placeholder:text-red-500": error,
+            },
+          )}
           {...props}
         />
 

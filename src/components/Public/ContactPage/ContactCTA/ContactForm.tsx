@@ -6,13 +6,14 @@ import InputField from "@/src/components/Shared/InputField";
 import TextAreaField from "@/src/components/Shared/TextAreaField";
 import { ContactUsFormSchema } from "@/src/lib/parsers/contactForm";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
-// import { sendToFormSpree } from "@services/contactUs/formSpree";
+import { sendToFormSpree } from "@/src/services/client/formSpree";
+import { ContactUsForm } from "@/src/types/contactForm";
 import { Form, Formik } from "formik";
 import Link from "next/link";
 import { FC, useState } from "react";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
-// type MotiveOptions = "ventas" | "proyectos";
+type MotiveOptions = "ventas" | "proyectos";
 
 const contactFormInitialValues = {
   name: "",
@@ -25,17 +26,16 @@ const contactFormInitialValues = {
 };
 
 const ContactForm: FC = () => {
-  const [formSubmitted] = useState(false);
-  // const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // const getUrl = (motive: MotiveOptions) => {
-  //   switch (motive) {
-  //     case "ventas":
-  //       return process.env.VITE_FORMSPREE_SALES;
-  //     case "proyectos":
-  //       return process.env.VITE_FORMSPREE_PROJECTS;
-  //   }
-  // };
+  const getUrl = (motive: MotiveOptions) => {
+    switch (motive) {
+      case "ventas":
+        return process.env.VITE_FORMSPREE_SALES || "";
+      case "proyectos":
+        return process.env.VITE_FORMSPREE_PROJECTS || "";
+    }
+  };
 
   return (
     <div className="flex h-full flex-col justify-center">
@@ -60,21 +60,18 @@ const ContactForm: FC = () => {
             initialValues={contactFormInitialValues}
             validationSchema={toFormikValidationSchema(ContactUsFormSchema)}
             onSubmit={async (values, actions) => {
-              // eslint-disable-next-line no-console
-              console.log(values);
-
-              // const { motive, ...restForm } = values;
-              // const { status } = await sendToFormSpree(
-              //   getUrl(motive as MotiveOptions),
-              //   restForm as ContactUsForm,
-              // );
+              const { motive, ...restForm } = values;
+              const { status } = await sendToFormSpree(
+                getUrl(motive as MotiveOptions),
+                restForm as ContactUsForm,
+              );
 
               actions.setSubmitting(false);
 
-              // if (status === 200) {
-              //   setFormSubmitted(true);
-              //   actions.resetForm();
-              // }
+              if (status === 200) {
+                setFormSubmitted(true);
+                actions.resetForm();
+              }
             }}
           >
             {({
