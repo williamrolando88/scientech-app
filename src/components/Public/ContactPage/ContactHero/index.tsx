@@ -9,6 +9,7 @@ const ContactHero: FC = () => {
         alt="Call center assistant"
         src={PICTURES.contactPage.callCenter}
         className="h-full w-auto object-cover xl:w-full"
+        priority
       />
       <div className="absolute inset-0 z-10 bg-black/25" />
     </section>
