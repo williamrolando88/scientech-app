@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import Iconify from "@/src/components/Shared/Iconify";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -14,7 +14,7 @@ const FooterLink: FC<Props> = ({ name, href }) => {
   return (
     <Link href={href} className="flex w-fit items-center hover:underline">
       <span>{name}</span>
-      <ChevronRightIcon className="h-5" />
+      <Iconify icon="eva:arrow-ios-forward-fill" />
     </Link>
   );
 };

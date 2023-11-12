@@ -7,9 +7,8 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
-import Button from "../Shared/Button";
-import Iconify from "../Shared/Iconify";
-import ScientechLogo from "../Shared/ScientechLogo";
+import Iconify from "../../Shared/Iconify";
+import ScientechLogo from "../../Shared/ScientechLogo";
 
 /**
  * NavBar component used on the public Scientech page for navigation purposes
@@ -18,17 +17,14 @@ const NavBar: FC = () => {
   const pathName = usePathname();
 
   return (
-    <section className="z-50 text-terciary-lighter md:sticky md:left-0 md:top-0">
+    <nav className="z-50 text-terciary-lighter md:sticky md:left-0 md:top-0">
       <div className="bg-secondary-dark">
         <div className="mx-auto flex max-w-7xl justify-end px-2 sm:px-6 lg:px-8">
           <Link href={APP_ROUTES.public.login} target="_blank">
-            <Button
-              type="button"
-              className="flex items-center gap-1 rounded-full p-1 hover:text-white"
-            >
+            <button className="flex items-center gap-1 rounded-full p-1 hover:text-white">
               <Iconify icon="mdi:user-circle" />
               <span className="mr-1 text-sm">Iniciar Sesión</span>
-            </Button>
+            </button>
           </Link>
         </div>
       </div>
@@ -107,7 +103,7 @@ const NavBar: FC = () => {
           </>
         )}
       </Disclosure>
-    </section>
+    </nav>
   );
 };
 

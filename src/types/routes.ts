@@ -10,8 +10,8 @@ export type LinkIcon = ForwardRefExoticComponent<
 export type DashboardLink = {
   name: string;
   href: string;
-  icon: LinkIcon;
-  selected: LinkIcon;
+  icon?: LinkIcon;
+  selected?: LinkIcon;
 };
 
 export type PublicLink = {

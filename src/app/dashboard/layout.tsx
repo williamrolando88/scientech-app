@@ -1,4 +1,4 @@
-import DashboardLayout from "@/src/components/DashboardLayout";
+import DashboardLayout from "@/src/components/Private/DashboardLayout";
 import { LayoutInterface } from "@/src/types/common";
 import { FC } from "react";
 

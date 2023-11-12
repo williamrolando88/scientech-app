@@ -12,7 +12,6 @@ export default function NavLinks() {
     <>
       {DASHBOARD_LINKS.map((link) => {
         const currentPage = link.href === pathName;
-        const LinkIcon = currentPage ? link.selected : link.icon;
         return (
           <Link
             key={link.name}
@@ -22,7 +21,6 @@ export default function NavLinks() {
               { "bg-sky-100 text-blue-600": currentPage },
             )}
           >
-            <LinkIcon className="w-6" />
             <p className="hidden md:block">{link.name}</p>
           </Link>
         );

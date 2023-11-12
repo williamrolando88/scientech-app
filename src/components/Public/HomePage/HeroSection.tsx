@@ -4,7 +4,7 @@ import { APP_ROUTES } from "@/src/routes/appRoutes";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import Button from "../Shared/Button";
+import Button from "../../Shared/Button";
 
 const HeroSection: FC = () => {
   return (
@@ -29,7 +29,7 @@ const HeroSection: FC = () => {
           <p>{heroSectionContent.subtitle}</p>
 
           <Link className="mt-4" href={APP_ROUTES.public.contact}>
-            <Button className="text-secondary-lighter hover:bg-primary-dark">
+            <Button size="large">
               <h5>{heroSectionContent.CTALabel}</h5>
             </Button>
           </Link>

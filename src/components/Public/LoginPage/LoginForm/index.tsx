@@ -1,17 +1,14 @@
 "use client";
 
+import Iconify from "@/src/components/Shared/Iconify";
 import { authenticate } from "@/src/lib/actions/auth";
 import { lusitana } from "@/src/lib/utils/fonts";
-import {
-  AtSymbolIcon,
-  ExclamationCircleIcon,
-  KeyIcon,
-} from "@heroicons/react/24/outline";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useFormState } from "react-dom";
 import { LoginButton } from "./LoginButton";
 
 const LoginForm: FC = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const [code, action] = useFormState(authenticate, undefined);
 
   return (
@@ -40,7 +37,7 @@ const LoginForm: FC = () => {
                 required
               />
 
-              <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <Iconify icon="eva:at-fill" />
             </div>
           </div>
 
@@ -63,19 +60,27 @@ const LoginForm: FC = () => {
                 minLength={6}
               />
 
-              <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              {showPassword ? (
+                <button onClick={() => setShowPassword(false)}>
+                  <Iconify icon="eva:eye-off-2-fill" />
+                </button>
+              ) : (
+                <button onClick={() => setShowPassword(true)}>
+                  <Iconify icon="eva:eye-outline" />
+                </button>
+              )}
             </div>
           </div>
         </div>
 
         <LoginButton />
 
-        <div className="flex h-8 items-end space-x-1">
+        <div className="flex h-8 items-end space-x-1 text-red-500">
           {code === "CredentialSignin" && (
             <>
-              <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+              <Iconify icon="eva:alert-circle-outline" />
 
-              <p aria-live="polite" className="text-sm text-red-500">
+              <p aria-live="polite" className="text-sm ">
                 Invalid credentials
               </p>
             </>

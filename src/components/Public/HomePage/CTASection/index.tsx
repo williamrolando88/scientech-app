@@ -1,6 +1,6 @@
+import Button from "@/src/components/Shared/Button";
 import { CTASectionContent } from "@/src/constants/staticContent/homePage";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
-import { Button } from "@tremor/react";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -13,10 +13,7 @@ const CTASection: FC = () => {
           <p>{CTASectionContent.description}</p>
         </div>
         <Link href={APP_ROUTES.public.contact}>
-          <Button
-            // color="light-blue"
-            className="max-w-fit text-white hover:bg-primary-darker"
-          >
+          <Button>
             <h5 className="p-1 lg:p-2">{CTASectionContent.CTALabel}</h5>
           </Button>
         </Link>
