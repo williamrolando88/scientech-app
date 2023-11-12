@@ -6,7 +6,7 @@ interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   /** Shows the helper text as error */
   error?: boolean;
   /** Shows a helper text below the input */
-  helperText?: string | boolean;
+  helperText?: string;
   /** Adds an icon to the field */
   icon?: ReactNode;
   /** Indicates the icon position */
@@ -16,11 +16,11 @@ interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 }
 
 const TextAreaField: FC<Props> = ({
-  helperText,
   iconPosition,
   error,
   icon,
   label,
+  helperText,
   ...props
 }) => {
   return (

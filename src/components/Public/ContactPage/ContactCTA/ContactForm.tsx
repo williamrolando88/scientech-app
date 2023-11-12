@@ -85,14 +85,14 @@ const ContactForm: FC = () => {
               // setValues,
               isSubmitting,
             }) => (
-              <Form className="mt-1 flex flex-col gap-2">
+              <Form className="mt-2 flex flex-col gap-4">
                 <InputField
                   name="name"
                   label="Nombre"
                   onChange={handleChange}
                   value={values.name}
                   error={touched.name && !!errors.name}
-                  helperText={touched.name && errors.name}
+                  helperText={touched.name ? errors.name : ""}
                   required
                 />
 
@@ -104,7 +104,7 @@ const ContactForm: FC = () => {
                     onChange={handleChange}
                     value={values.email}
                     error={touched.email && !!errors.email}
-                    helperText={touched.email && errors.email}
+                    helperText={touched.email ? errors.email : ""}
                     required
                   />
 
@@ -114,7 +114,7 @@ const ContactForm: FC = () => {
                     onChange={handleChange}
                     value={values.phone}
                     error={!!errors.phone && touched.phone}
-                    helperText={touched.phone && errors.phone}
+                    helperText={touched.phone ? errors.phone : ""}
                     required
                   />
                 </div>
@@ -142,7 +142,7 @@ const ContactForm: FC = () => {
                   onChange={handleChange}
                   value={values.companyName}
                   error={!!errors.companyName && touched.companyName}
-                  helperText={touched.companyName && errors.companyName}
+                  helperText={touched.companyName ? errors.companyName : ""}
                 />
 
                 <TextAreaField
@@ -152,7 +152,7 @@ const ContactForm: FC = () => {
                   onChange={handleChange}
                   value={values.message}
                   error={!!errors.message && touched.message}
-                  helperText={touched.message && errors.message}
+                  helperText={touched.message ? errors.message : ""}
                   required
                 />
 
