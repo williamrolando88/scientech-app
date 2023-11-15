@@ -3,7 +3,7 @@ import ContactHero from "@/src/components/Public/ContactPage/ContactHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Inicio",
+  title: "Contact",
 };
 
 function page() {
