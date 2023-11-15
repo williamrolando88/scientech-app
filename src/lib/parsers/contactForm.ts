@@ -21,8 +21,8 @@ export const ContactUsFormSchema = z.object({
       "Por favor detalle su requerimiento para poder asesorarlo de mejor manera",
   }),
   agreedTermsAndConditionsAndPrivacyPolicy: z
-    .boolean()
-    .refine((val) => val === true, {
+    .string()
+    .refine((val) => val === "on", {
       message: "Requerimos tu consentimiento antes de continuar",
     }),
 });

@@ -1,5 +1,8 @@
+"use client";
+
 import clsx from "clsx";
 import { ButtonHTMLAttributes, FC, ReactNode } from "react";
+import { useFormStatus } from "react-dom";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Prop to add an icon to the button */
@@ -22,6 +25,8 @@ const Button: FC<Props> = ({
   size = "medium",
   ...props
 }) => {
+  const { pending } = useFormStatus();
+
   return (
     <button
       className={clsx(
@@ -41,6 +46,7 @@ const Button: FC<Props> = ({
         className,
       )}
       {...props}
+      disabled={props.disabled || pending}
     >
       {icon && position === "start" && icon}
       {children}
