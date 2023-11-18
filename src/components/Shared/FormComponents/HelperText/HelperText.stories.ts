@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import HelperText from ".";
 
 const metaHelperText: Meta<typeof HelperText> = {
-  title: "Primitives/HelperText",
+  title: "FormComponents/HelperText",
   component: HelperText,
   parameters: {
     layout: "centered",

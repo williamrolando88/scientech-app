@@ -3,7 +3,7 @@ import Button from ".";
 import Iconify from "../../Iconify";
 
 const metaButton: Meta<typeof Button> = {
-  title: "Primitives/Button",
+  title: "FormComponents/Button",
   component: Button,
   parameters: {
     layout: "centered",

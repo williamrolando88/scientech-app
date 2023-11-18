@@ -3,7 +3,7 @@ import InputField from ".";
 import Iconify from "../../Iconify";
 
 const metaInputField: Meta<typeof InputField> = {
-  title: "Primitives/InputField",
+  title: "FormComponents/InputField",
   component: InputField,
   parameters: {
     layout: "centered",

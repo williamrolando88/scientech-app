@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import SelectField from ".";
 
 const metaSelectField: Meta<typeof SelectField> = {
-  title: "Primitives/SelectField",
+  title: "FormComponents/SelectField",
   component: SelectField,
   parameters: {
     layout: "centered",
