@@ -5,6 +5,8 @@ export const DASHBOARD_LINKS: DashboardLink[] = [
   {
     name: "Inicio",
     href: APP_ROUTES.private.root,
+    icon: "eva:home-outline",
+    activeIcon: "eva:home-solid",
   },
   {
     name: "Analizador XML",

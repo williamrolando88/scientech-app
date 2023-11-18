@@ -51,9 +51,7 @@ const LoginForm: FC = () => {
         />
       </div>
 
-      <Button icon={<Iconify icon="eva:arrow-ios-forward-fill" />}>
-        Log in
-      </Button>
+      <Button icon={<Iconify icon="ic:round-login" />}>Log in</Button>
 
       {code === "CredentialSignin" && (
         <div className="flex h-8 items-end space-x-1 text-red-500">

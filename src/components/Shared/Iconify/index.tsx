@@ -5,7 +5,7 @@ import { FC } from "react";
 
 interface Props {
   /** Icon name from https://icon-sets.iconify.design/eva/arrow-left-fill/ */
-  icon: string;
+  icon?: string;
   /** Size in pixels */
   size?: string;
   /** Support className props, compatible with TailwindCSS */
@@ -16,6 +16,8 @@ interface Props {
  * Component to quick access Iconify icons database
  */
 const Iconify: FC<Props> = ({ icon, size = 20, className = "" }) => {
+  if (!icon) return null;
+
   return <Icon className={className} icon={icon} width={size} height={size} />;
 };
 

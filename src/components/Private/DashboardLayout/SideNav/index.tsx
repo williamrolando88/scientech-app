@@ -1,25 +1,62 @@
-import { logOut } from "@/src/lib/actions/auth";
+"use client";
+
+import Iconify from "@/src/components/Shared/Iconify";
+import ScientechIco from "@/src/components/Shared/ScientechIco";
+import ScientechLogo from "@/src/components/Shared/ScientechLogo";
 import { APP_ROUTES } from "@/src/routes/appRoutes";
+import { DASHBOARD_LINKS } from "@/src/routes/dashboardLinks";
+import clsx from "clsx";
 import Link from "next/link";
-import NavLinks from "./Navlinks";
+import { useState } from "react";
+import { LogoutButton } from "./LogoutButton";
+import { NavLink } from "./NavLink";
 
 export default function SideNav() {
+  const [collapsed, setCollapsed] = useState(false);
+
+  const toogleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
+
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2">
-      <Link
-        className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40"
-        href={APP_ROUTES.public.root}
+    <div
+      className={clsx("relative flex-none border-r bg-gray-50 transition-all", {
+        "w-64": !collapsed,
+        "w-20": collapsed,
+      })}
+    >
+      <div
+        className={clsx("flex h-full flex-col p-2", {
+          "items-center": collapsed,
+        })}
       >
-        <div className="w-32 text-white md:w-40">{/* <AcmeLogo /> */}</div>
-      </Link>
-      <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-        <NavLinks />
-        <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
-        <form action={logOut}>
-          <button className="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
-            <div className="hidden md:block">Sign Out</div>
-          </button>
-        </form>
+        <Link
+          className="flex items-end justify-start rounded-md p-2"
+          href={APP_ROUTES.public.root}
+        >
+          {collapsed ? <ScientechIco /> : <ScientechLogo className="w-full" />}
+        </Link>
+
+        <button
+          className="absolute right-[-13px] top-16 rounded-full border bg-gray-50"
+          onClick={toogleCollapsed}
+        >
+          {collapsed ? (
+            <Iconify icon="eva:chevron-right-fill" size="25" />
+          ) : (
+            <Iconify icon="eva:chevron-left-fill" size="25" />
+          )}
+        </button>
+
+        <div className="mt-4 flex grow flex-col justify-between gap-2">
+          {DASHBOARD_LINKS.map((link) => (
+            <NavLink key={link.href} collapsed={collapsed} {...link} />
+          ))}
+
+          <div className="block h-auto w-full grow rounded-md bg-gray-50" />
+
+          <LogoutButton collapsed={collapsed} />
+        </div>
       </div>
     </div>
   );
