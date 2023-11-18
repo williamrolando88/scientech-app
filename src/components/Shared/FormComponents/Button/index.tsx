@@ -8,7 +8,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Prop to add an icon to the button */
   icon?: ReactNode;
   /** Indicates the icon position */
-  position?: "start" | "end";
+  iconPosition?: "start" | "end";
   /** Indicates the button color */
   variant?: "primary" | "secondary" | "terciary";
   /** Indicates the button size */
@@ -20,7 +20,7 @@ const Button: FC<Props> = ({
   children,
   icon = null,
   className = "",
-  position = "start",
+  iconPosition = "start",
   variant = "primary",
   size = "medium",
   ...props
@@ -48,9 +48,9 @@ const Button: FC<Props> = ({
       {...props}
       disabled={props.disabled || pending}
     >
-      {icon && position === "start" && icon}
+      {icon && iconPosition === "start" && icon}
       {children}
-      {icon && position === "end" && icon}
+      {icon && iconPosition === "end" && icon}
     </button>
   );
 };

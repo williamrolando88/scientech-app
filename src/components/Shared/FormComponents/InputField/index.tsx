@@ -9,7 +9,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   helperText?: string;
   /** Adds an icon to the field */
   icon?: ReactNode;
-  /** Indicates the icon position */
+  /** Indicates the icon position, default: `end` */
   iconPosition?: "start" | "end";
   /** Input label */
   label?: string;
@@ -20,7 +20,7 @@ const InputField: FC<Props> = ({
   error,
   icon,
   label,
-  iconPosition = "start",
+  iconPosition = "end",
   ...props
 }) => {
   return (
