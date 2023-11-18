@@ -27,7 +27,7 @@ export const NavLink: FC<NavLinkProps> = ({
       key={name}
       href={href}
       className={clsx(
-        "flex items-center justify-center gap-2 rounded-md bg-terciary-lighter p-3 text-sm font-medium hover:bg-sky-100 hover:text-primary-light md:flex-none md:justify-start md:p-2 md:px-3",
+        "flex items-center justify-start gap-2 rounded-md bg-terciary-lighter px-3 py-2 transition-all hover:bg-sky-100 hover:text-primary-light",
         { "bg-secondary-lighter text-primary-default": currentPage },
       )}
     >
