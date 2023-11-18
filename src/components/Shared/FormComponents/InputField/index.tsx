@@ -24,7 +24,7 @@ const InputField: FC<Props> = ({
   ...props
 }) => {
   return (
-    <div className="flex w-full flex-col gap-1 rounded-md border border-gray-200 px-3 py-2 focus-within:ring-2">
+    <div className="flex w-full flex-col gap-1">
       {label && (
         <label
           className={clsx("block text-xs font-medium text-gray-900", {
@@ -36,7 +36,7 @@ const InputField: FC<Props> = ({
         </label>
       )}
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 focus-within:ring-2">
         {icon && iconPosition === "start" && icon}
 
         <input

@@ -5,7 +5,8 @@ import { authenticate } from "@/src/lib/actions/auth";
 import { lusitana } from "@/src/lib/utils/fonts";
 import { FC, useState } from "react";
 import { useFormState } from "react-dom";
-import { LoginButton } from "./LoginButton";
+import Button from "../../Shared/FormComponents/Button";
+import InputField from "../../Shared/FormComponents/InputField";
 
 const LoginForm: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,11 +15,18 @@ const LoginForm: FC = () => {
   return (
     <form action={action} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-          Please log in to continue.
-        </h1>
+        <h1 className={`${lusitana.className} mb-3 text-2xl`}>Bienvenido</h1>
 
         <div className="w-full">
+          <InputField
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Enter your email address"
+            label="Email"
+            icon={<Iconify icon="eva:at-fill" />}
+            iconPosition="end"
+          />
           <div>
             <label
               className="mb-3 mt-5 block text-xs font-medium text-gray-900"
@@ -36,8 +44,6 @@ const LoginForm: FC = () => {
                 placeholder="Enter your email address"
                 required
               />
-
-              <Iconify icon="eva:at-fill" />
             </div>
           </div>
 
@@ -73,7 +79,7 @@ const LoginForm: FC = () => {
           </div>
         </div>
 
-        <LoginButton />
+        <Button />
 
         <div className="flex h-8 items-end space-x-1 text-red-500">
           {code === "CredentialSignin" && (
