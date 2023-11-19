@@ -1,10 +1,14 @@
 import CalculatorTable from "@/src/components/Private/Calculator/CalculatorIndex/CalculatorTable";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Calculadora",
+};
 
 const page = () => {
   return (
     <main>
       <h1>Calculator</h1>
-      <p>Calculator page</p>
       <CalculatorTable />
     </main>
   );
