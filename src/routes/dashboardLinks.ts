@@ -4,13 +4,13 @@ import { APP_ROUTES } from "./appRoutes";
 export const DASHBOARD_LINKS: DashboardLink[] = [
   {
     name: "Inicio",
-    href: APP_ROUTES.private.root,
+    href: APP_ROUTES.private.home,
     icon: "eva:home-outline",
     activeIcon: "eva:home-fill",
   },
   {
     name: "Calculadora de Importación",
-    href: APP_ROUTES.private.calculator.root,
+    href: APP_ROUTES.private.calculator.index,
     icon: "eva:keypad-outline",
     activeIcon: "eva:keypad-fill",
   },

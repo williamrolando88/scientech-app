@@ -16,10 +16,10 @@ export const APP_ROUTES = {
     privacyPolicy: "/politica-de-privacidad",
   },
   private: {
-    root: "/dashboard",
-    xmlParser: "/dashboard/xml-parser",
+    home: pathCreator(DASHBOARD, "/home"),
+    xmlParser: pathCreator(DASHBOARD, "/xml-parser"),
     calculator: {
-      root: pathCreator(DASHBOARD, CALCULATOR),
+      index: pathCreator(DASHBOARD, CALCULATOR),
       create: pathCreator(DASHBOARD, CALCULATOR, "/create"),
     },
   },

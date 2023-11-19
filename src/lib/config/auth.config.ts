@@ -10,13 +10,13 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith(
-        APP_ROUTES.private.root,
+        APP_ROUTES.private.home,
       );
 
       const isOnLogin = nextUrl.pathname.startsWith(APP_ROUTES.public.login);
 
       if (isOnLogin && isLoggedIn) {
-        return Response.redirect(new URL(APP_ROUTES.private.root, nextUrl));
+        return Response.redirect(new URL(APP_ROUTES.private.home, nextUrl));
       }
 
       if (isOnDashboard) {
