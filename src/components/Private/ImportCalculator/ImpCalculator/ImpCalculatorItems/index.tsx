@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/src/components/Shared/FormComponents/Button";
+import Iconify from "@/src/components/Shared/Iconify";
 import { articlesHeader } from "@/src/constants/importCalculator";
 import { useImpCalculatorContext } from "@/src/hooks/useImpCalculator";
 import { ImportCalculatorQuotedItem } from "@/src/types/calculator";
@@ -18,7 +19,7 @@ const ImpCalculatorItems: FC = () => {
         </p>
       </div>
 
-      <div className="mt-2 grid grid-cols-24 gap-1">
+      <div className="grid-cols-23 mt-2 grid gap-1">
         <ItemsTableHeader />
         <QuotedItems />
       </div>
@@ -50,11 +51,11 @@ const ItemsTableHeader = () => {
 
       <Button
         type="button"
-        className="col-span-2"
-        color="green"
+        className="col-span-1"
+        variant="success"
         onClick={addArticle}
       >
-        +
+        <Iconify icon="eva:plus-fill" />
       </Button>
     </>
   );
@@ -111,11 +112,11 @@ const ArticleRow: React.FC<Props> = ({ article, index }) => {
 
       <Button
         type="button"
-        className="col-span-2"
+        className="col-span-1"
         onClick={() => alert("index")}
-        color="red"
+        variant="error"
       >
-        Borrar
+        <Iconify icon="eva:trash-2-fill" />
       </Button>
     </>
   );
