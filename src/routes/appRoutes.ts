@@ -1,3 +1,8 @@
+import { pathCreator } from "../lib/utils/routes";
+
+const DASHBOARD = "/dashboard";
+const CALCULATOR = "/calculator";
+
 export const APP_ROUTES = {
   public: {
     root: "/",
@@ -10,5 +15,9 @@ export const APP_ROUTES = {
     termsAndConditions: "/terminos-y-condiciones",
     privacyPolicy: "/politica-de-privacidad",
   },
-  private: { root: "/dashboard", xmlParser: "/dashboard/xml-parser" },
+  private: {
+    root: "/dashboard",
+    xmlParser: "/dashboard/xml-parser",
+    calculator: { root: pathCreator(DASHBOARD, CALCULATOR, "/index") },
+  },
 };
