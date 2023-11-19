@@ -13,7 +13,14 @@
   ],
   "rules": {
     "tailwindcss/classnames-order": 0,
-    "no-unused-vars": [2, { "argsIgnorePattern": "^_", "args": "after-used" }],
+    "no-unused-vars": [
+      2,
+      {
+        "argsIgnorePattern": "^_",
+        "args": "after-used",
+        "varsIgnorePattern": "^_"
+      }
+    ],
     "no-console": 2
   }
 }
