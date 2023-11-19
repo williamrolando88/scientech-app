@@ -1,4 +1,3 @@
-import TestForm from "@/src/components/Private/ImportCalculator/Calculator/TestForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,11 +5,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return (
-    <div>
-      <TestForm />
-    </div>
-  );
+  return <main>hola </main>;
 };
 
 export default page;

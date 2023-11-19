@@ -9,7 +9,7 @@ export const DASHBOARD_LINKS: DashboardLink[] = [
     activeIcon: "eva:home-fill",
   },
   {
-    name: "Calculadora de Importación",
+    name: "Calculadora de Importaciones",
     href: APP_ROUTES.private.calculator.index,
     icon: "eva:keypad-outline",
     activeIcon: "eva:keypad-fill",
