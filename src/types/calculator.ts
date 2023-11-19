@@ -36,3 +36,26 @@ export interface ImportCalculator {
   items: ImportCalculatorQuotedItem[];
   notes: ImportCalculatorNote[];
 }
+
+export type ArticlesHeader = {
+  name: string;
+  type: string;
+  title: string;
+  initialValue: number | string;
+  field: "input" | "span";
+  startSymbol?: string;
+  endSymbol?: string;
+};
+
+export type ArticleData = {
+  [key: string]: number | string;
+  qty: number;
+  name: string;
+  tariffRate: number;
+  unitWeight: number;
+  unitPrice: number;
+  margin: number;
+  bunchCost: number;
+  unitProfit: number;
+  unitFinalPrice: number;
+};
