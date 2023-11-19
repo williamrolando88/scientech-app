@@ -1,4 +1,19 @@
-import { ArticlesHeader, ImportCalculator } from "../types/calculator";
+import {
+  ArticlesHeader,
+  ImportCalculator,
+  ImportCalculatorQuotedItem,
+} from "../types/calculator";
+
+export const IMPORT_CALCULATOR_NEW_ROW: ImportCalculatorQuotedItem = {
+  discount: 0,
+  margin: 0,
+  name: "",
+  quantity: 1,
+  tariff: 0,
+  unitCost: 0,
+  unitPrice: 0,
+  unitWeight: 1,
+};
 
 export const IMPORT_CALCULATOR_INITIAL_VALUE: ImportCalculator = {
   items: [],
@@ -26,21 +41,18 @@ export const articlesHeader: ArticlesHeader[] = [
     field: "input",
     type: "number",
     title: "Cant.",
-    initialValue: 1,
   },
   {
     name: "name",
     field: "input",
     type: "text",
     title: "Descripción",
-    initialValue: "",
   },
   {
     name: "unitWeight",
     field: "input",
     type: "number",
     title: "Peso U.",
-    initialValue: 1,
     endSymbol: "[lb]",
   },
   {
@@ -48,7 +60,6 @@ export const articlesHeader: ArticlesHeader[] = [
     field: "input",
     type: "number",
     title: "Costo U.",
-    initialValue: 0,
     startSymbol: "$",
   },
   {
@@ -56,7 +67,6 @@ export const articlesHeader: ArticlesHeader[] = [
     field: "input",
     type: "number",
     title: "Arancel",
-    initialValue: 0,
     endSymbol: "%",
   },
   {
@@ -64,7 +74,6 @@ export const articlesHeader: ArticlesHeader[] = [
     field: "input",
     type: "number",
     title: "Margen",
-    initialValue: 0,
     endSymbol: "%",
   },
   {
@@ -72,7 +81,6 @@ export const articlesHeader: ArticlesHeader[] = [
     field: "input",
     type: "number",
     title: "Descuento",
-    initialValue: 0,
     endSymbol: "%",
   },
   {
@@ -80,7 +88,6 @@ export const articlesHeader: ArticlesHeader[] = [
     field: "span",
     type: "number",
     title: "Precio U.",
-    initialValue: 0,
     startSymbol: "$",
   },
 ];

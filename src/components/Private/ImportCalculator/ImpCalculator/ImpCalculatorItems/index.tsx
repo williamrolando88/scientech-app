@@ -30,7 +30,7 @@ const ImpCalculatorItems: FC = () => {
 export default ImpCalculatorItems;
 
 const ItemsTableHeader = () => {
-  const { addArticle } = useImpCalculatorContext();
+  const { addRow } = useImpCalculatorContext();
 
   return (
     <>
@@ -53,7 +53,7 @@ const ItemsTableHeader = () => {
         type="button"
         className="col-span-1"
         variant="success"
-        onClick={addArticle}
+        onClick={addRow}
       >
         <Iconify icon="eva:plus-fill" />
       </Button>
@@ -62,12 +62,12 @@ const ItemsTableHeader = () => {
 };
 
 const QuotedItems = () => {
-  const { calculatorInputs } = useImpCalculatorContext();
+  const { values } = useImpCalculatorContext();
 
   // eslint-disable-next-line no-console
-  console.log(calculatorInputs.items);
+  console.log(values.items);
 
-  return calculatorInputs.items.map((article, idx) => (
+  return values.items.map((article, idx) => (
     <ArticleRow article={article} index={idx} key={idx} />
   ));
 };
@@ -78,7 +78,7 @@ interface Props {
 }
 
 const ArticleRow: React.FC<Props> = ({ article, index }) => {
-  const { removeArticle } = useImpCalculatorContext();
+  const { deleteRow } = useImpCalculatorContext();
 
   return (
     <>
@@ -118,7 +118,7 @@ const ArticleRow: React.FC<Props> = ({ article, index }) => {
       <Button
         type="button"
         className="col-span-1"
-        onClick={() => removeArticle(article.id)}
+        onClick={() => deleteRow(index)}
         variant="error"
       >
         <Iconify icon="eva:trash-2-fill" />

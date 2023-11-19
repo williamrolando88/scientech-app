@@ -1,35 +1,23 @@
+import { z } from "zod";
+import {
+  CalculatorSettingsValidationSchema,
+  ItemsValidationSchema,
+  NotesValidationSchema,
+} from "../lib/parsers/importCalculator";
+
 export interface ImportCalculatorMetadata {
   createdAt: string;
   id: string;
   updatedAt: string;
 }
 
-export interface ImportCalculatorSettings {
-  bankExpenses: number;
-  customsAgent: number;
-  description: string;
-  fleetCostPerLibre: number;
-  importProcedure: number;
-  localFleet: number;
-  originFleet: number;
-  originTaxes: number;
-}
+export type ImportCalculatorSettings = z.infer<
+  typeof CalculatorSettingsValidationSchema
+>;
 
-export interface ImportCalculatorQuotedItem {
-  id: string;
-  discount: number;
-  margin: number;
-  name: string;
-  quantity: number;
-  tariff: number;
-  unitCost: number;
-  unitPrice: number;
-  unitWeight: number;
-}
+export type ImportCalculatorQuotedItem = z.infer<typeof ItemsValidationSchema>;
 
-export interface ImportCalculatorNote {
-  body: string;
-}
+export type ImportCalculatorNote = z.infer<typeof NotesValidationSchema>;
 
 export interface ImportCalculator {
   metadata: ImportCalculatorMetadata;
@@ -42,7 +30,6 @@ export type ArticlesHeader = {
   name: keyof ImportCalculatorQuotedItem;
   type: string;
   title: string;
-  initialValue: number | string;
   field: "input" | "span";
   startSymbol?: string;
   endSymbol?: string;

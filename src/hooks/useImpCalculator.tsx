@@ -1,79 +1,152 @@
 "use client";
 
+import { FormikErrors, FormikTouched, useFormik } from "formik";
 import {
   ReactNode,
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
 } from "react";
 import { useLocalStorage } from "usehooks-ts";
+import { toFormikValidationSchema } from "zod-formik-adapter";
 import {
   IMPORT_CALCULATOR_INITIAL_VALUE,
-  articlesHeader,
+  IMPORT_CALCULATOR_NEW_ROW,
 } from "../constants/importCalculator";
 import { localStorageKey } from "../constants/keys";
-import {
-  ImportCalculator,
-  ImportCalculatorQuotedItem,
-} from "../types/calculator";
+import { ImportCalculatorValidationSchema } from "../lib/parsers/importCalculator";
+import { ImportCalculator } from "../types/calculator";
 
 interface Props {
   children: ReactNode;
+  fetchedValues?: ImportCalculator;
+}
+interface Context {
+  values: ImportCalculator;
+  errors: FormikErrors<ImportCalculator>;
+  touched: FormikTouched<ImportCalculator>;
+  handleChange: (e: React.ChangeEvent<unknown>) => void;
+  resetForm: VoidFunction;
+  addRow: VoidFunction;
+  deleteRow: (id: number) => void;
+  addNote: (body: string) => void;
+  deleteNote: (id: number) => void;
+  setFieldValue: (
+    field: string,
+    value: string | number,
+  ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
 }
 
 const ImpCalculatorContext = createContext<Context>({} as Context);
 
-interface Context {
-  calculatorInputs: ImportCalculator;
-  addArticle: VoidFunction;
-  removeArticle: (id: string) => void;
-}
-
-export const ImpCalculatorProvider = ({ children }: Props) => {
+export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   const [calculatorInputs, setCalculatorInputs] =
     useLocalStorage<ImportCalculator>(
       localStorageKey.importCalculator,
       IMPORT_CALCULATOR_INITIAL_VALUE,
     );
 
-  const addArticle = useCallback(() => {
-    const article: Record<string, string | number> = {};
-    articlesHeader.forEach((column) => {
-      article[column.name] = column.initialValue;
-    });
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    resetForm,
+    setValues,
+    setFieldValue,
+  } = useFormik<ImportCalculator>({
+    initialValues: calculatorInputs || IMPORT_CALCULATOR_INITIAL_VALUE,
+    onSubmit: () => alert("submit"),
+    validationSchema: toFormikValidationSchema(
+      ImportCalculatorValidationSchema,
+    ),
+  });
 
-    article.id = Date.now().toString();
-
-    setCalculatorInputs((prevState) => ({
+  const addRow = useCallback(() => {
+    setValues((prevState) => ({
       ...prevState,
-      items: [
-        ...prevState.items,
-        article as unknown as ImportCalculatorQuotedItem,
-      ],
+      items: [...prevState.items, IMPORT_CALCULATOR_NEW_ROW],
     }));
-  }, [setCalculatorInputs]);
+  }, [setValues]);
 
-  const removeArticle = useCallback(
-    (id: string) => {
-      setCalculatorInputs((prevState) => ({
+  const deleteRow = useCallback(
+    (id: number) => {
+      setValues((prevState) => ({
         ...prevState,
-        items: prevState.items.filter((item) => item.id !== id),
+        items: prevState.items.filter((_, index) => index !== id),
       }));
     },
-    [setCalculatorInputs],
+    [setValues],
   );
 
-  const values: Context = useMemo(
+  const addNote = useCallback(
+    (body: string) => {
+      setValues((prevState) => ({
+        ...prevState,
+        notes: [...prevState.notes, { body }],
+      }));
+    },
+    [setValues],
+  );
+
+  const deleteNote = useCallback(
+    (id: number) => {
+      setValues((prevState) => ({
+        ...prevState,
+        notes: prevState.notes.filter((_, index) => index !== id),
+      }));
+    },
+    [setValues],
+  );
+
+  const resetCalculator = useCallback(() => {
+    setCalculatorInputs(IMPORT_CALCULATOR_INITIAL_VALUE);
+    resetForm({ values: IMPORT_CALCULATOR_INITIAL_VALUE });
+  }, [resetForm, setCalculatorInputs]);
+
+  useEffect(() => {
+    setCalculatorInputs(values);
+  }, [setCalculatorInputs, values]);
+
+  useEffect(() => {
+    if (fetchedValues) {
+      setCalculatorInputs(fetchedValues);
+      setValues(fetchedValues);
+    }
+  }, [fetchedValues, setCalculatorInputs, setValues]);
+
+  const contextValues: Context = useMemo(
     () => ({
-      calculatorInputs,
-      addArticle,
-      removeArticle,
+      values,
+      addRow,
+      deleteRow,
+      resetCalculator,
+      addNote,
+      deleteNote,
+      errors,
+      handleChange,
+      resetForm,
+      setFieldValue,
+      touched,
     }),
-    [addArticle, calculatorInputs, removeArticle],
+    [
+      addNote,
+      addRow,
+      deleteNote,
+      deleteRow,
+      errors,
+      handleChange,
+      resetCalculator,
+      resetForm,
+      setFieldValue,
+      touched,
+      values,
+    ],
   );
   return (
-    <ImpCalculatorContext.Provider value={values}>
+    <ImpCalculatorContext.Provider value={contextValues}>
       {children}
     </ImpCalculatorContext.Provider>
   );
