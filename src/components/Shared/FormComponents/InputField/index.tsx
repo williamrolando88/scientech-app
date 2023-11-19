@@ -17,14 +17,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 const InputField: FC<Props> = ({
   helperText,
-  iconPosition,
   error,
   icon,
   label,
+  iconPosition = "start",
   ...props
 }) => {
   return (
-    <div className="flex w-full flex-col gap-1">
+    <div className="flex w-full flex-col gap-1 rounded-md border border-gray-200 px-3 py-2 focus-within:ring-2">
       {label && (
         <label
           className={clsx("block text-xs font-medium text-gray-900", {
@@ -36,12 +36,12 @@ const InputField: FC<Props> = ({
         </label>
       )}
 
-      <div className="relative flex gap-2">
+      <div className="flex items-center gap-2">
         {icon && iconPosition === "start" && icon}
 
         <input
           className={clsx(
-            "peer block w-full rounded-md border border-gray-200 px-4 py-2 text-sm outline-2 placeholder:text-gray-500",
+            "peer block w-full text-ellipsis whitespace-nowrap border-none p-0  text-sm outline-2 placeholder:text-gray-500 focus:ring-0",
             {
               "border-red-500 text-red-500 placeholder:text-red-500": error,
             },

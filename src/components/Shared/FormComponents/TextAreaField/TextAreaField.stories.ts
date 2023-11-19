@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import TextAreaField from ".";
 
 const metaTextAreaField: Meta<typeof TextAreaField> = {
-  title: "Primitives/TextAreaField",
+  title: "FormComponents/TextAreaField",
   component: TextAreaField,
   parameters: {
     layout: "centered",
