@@ -18,6 +18,9 @@ export const APP_ROUTES = {
   private: {
     root: "/dashboard",
     xmlParser: "/dashboard/xml-parser",
-    calculator: { root: pathCreator(DASHBOARD, CALCULATOR, "/index") },
+    calculator: {
+      root: pathCreator(DASHBOARD, CALCULATOR),
+      create: pathCreator(DASHBOARD, CALCULATOR, "/create"),
+    },
   },
 };
