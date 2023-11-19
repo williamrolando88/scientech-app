@@ -2,7 +2,8 @@
 
 import Button from "@/src/components/Shared/FormComponents/Button";
 import { articlesHeader } from "@/src/constants/importCalculator";
-import { ArticleData } from "@/src/types/calculator";
+import { useImpCalculatorContext } from "@/src/hooks/useImpCalculator";
+import { ImportCalculatorQuotedItem } from "@/src/types/calculator";
 import clsx from "clsx";
 import { FC } from "react";
 
@@ -18,32 +19,8 @@ const ImpCalculatorItems: FC = () => {
       </div>
 
       <div className="mt-2 grid grid-cols-24 gap-1">
-        {articlesHeader.map((column) => (
-          <p
-            className={clsx(
-              "flex items-center justify-center rounded-md border border-secondary-light bg-secondary-lighter px-2 py-1 text-center text-base font-bold",
-              {
-                "col-span-8": column.name === "name",
-                "col-span-2": column.name !== "name",
-              },
-            )}
-            key={column.name}
-          >
-            {column.title}
-          </p>
-        ))}
-
-        <Button
-          className="col-span-2"
-          color="green"
-          onClick={() => alert("click")}
-        >
-          +
-        </Button>
-
-        {[].map((article, idx) => (
-          <ArticleRow article={article} index={idx} key={idx} />
-        ))}
+        <ItemsTableHeader />
+        <QuotedItems />
       </div>
     </section>
   );
@@ -51,30 +28,72 @@ const ImpCalculatorItems: FC = () => {
 
 export default ImpCalculatorItems;
 
+const ItemsTableHeader = () => {
+  const { addArticle } = useImpCalculatorContext();
+
+  return (
+    <>
+      {articlesHeader.map((column) => (
+        <p
+          className={clsx(
+            "flex items-center justify-center rounded-md border border-secondary-light bg-secondary-lighter px-2 py-1 text-center text-base font-bold",
+            {
+              "col-span-8": column.name === "name",
+              "col-span-2": column.name !== "name",
+            },
+          )}
+          key={column.name}
+        >
+          {column.title}
+        </p>
+      ))}
+
+      <Button
+        type="button"
+        className="col-span-2"
+        color="green"
+        onClick={addArticle}
+      >
+        +
+      </Button>
+    </>
+  );
+};
+
+const QuotedItems = () => {
+  const { calculatorInputs } = useImpCalculatorContext();
+
+  return calculatorInputs.items.map((article, idx) => (
+    <ArticleRow article={article} index={idx} key={idx} />
+  ));
+};
+
 interface Props {
-  article: ArticleData;
+  article: ImportCalculatorQuotedItem;
   index: number;
 }
 
 const ArticleRow: React.FC<Props> = ({ article, index }) => {
-  // const { deleteRow } = useCalculator();
-
   return (
     <>
       {articlesHeader.map((column) =>
         column.field === "input" ? (
           <div
             key={column.name}
-            className={`flex items-center justify-between gap-1 rounded-md  border px-2 ${
-              column.name === "name" ? "col-span-6" : "col-span-2"
-            }`}
+            className={clsx(
+              "flex items-center justify-between gap-1 rounded-md border px-2 focus-within:ring-2",
+              {
+                "col-span-8": column.name === "name",
+                "col-span-2": column.name !== "name",
+              },
+            )}
           >
             <span className="text-xs text-gray-600">{column.startSymbol}</span>
             <input
-              className="h-full w-full rounded-none border-none focus:outline-none"
+              className="h-full w-full rounded-none border-none focus:outline-none focus:ring-0"
               type={column.type}
               value={article[column.name]}
-              name={`articles.${index}.${column.name}`}
+              name={`items.${index}.${column.name}`}
             />
             <span className="text-xs text-gray-600">{column.endSymbol}</span>
           </div>
@@ -89,7 +108,13 @@ const ArticleRow: React.FC<Props> = ({ article, index }) => {
           </div>
         ),
       )}
-      <Button className="col-span-2" onClick={() => alert("index")} color="red">
+
+      <Button
+        type="button"
+        className="col-span-2"
+        onClick={() => alert("index")}
+        color="red"
+      >
         Borrar
       </Button>
     </>
