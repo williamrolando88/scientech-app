@@ -2,7 +2,7 @@ import ImpCalculator from "@/src/components/Private/ImportCalculator/ImpCalculat
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Calculadora",
+  title: "Calculadora de Importaciones",
 };
 
 const page = () => {

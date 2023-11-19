@@ -10,7 +10,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Indicates the icon position */
   iconPosition?: "start" | "end";
   /** Indicates the button color */
-  variant?: "primary" | "secondary" | "terciary";
+  variant?: "primary" | "secondary" | "terciary" | "success" | "error";
   /** Indicates the button size */
   size?: "small" | "medium" | "large" | "extra-large";
 }
@@ -38,6 +38,8 @@ const Button: FC<Props> = ({
             variant === "secondary",
           "bg-terciary-default text-black hover:bg-terciary-dark":
             variant === "terciary",
+          "bg-green-600 text-white hover:bg-green-800": variant === "success",
+          "bg-red-600 text-white hover:bg-red-800": variant === "error",
           "px-2 py-1": size === "small",
           "px-4 py-2": size === "medium",
           "px-6 py-3": size === "large",
