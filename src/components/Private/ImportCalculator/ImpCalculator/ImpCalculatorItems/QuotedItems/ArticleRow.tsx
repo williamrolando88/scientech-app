@@ -1,4 +1,5 @@
 "use client";
+import AutoCalculateInput from "@/src/components/Shared/FormComponents/AutoCalculateInput";
 import Button from "@/src/components/Shared/FormComponents/Button";
 import Iconify from "@/src/components/Shared/Iconify";
 import { articlesHeader } from "@/src/constants/importCalculator";
@@ -11,7 +12,7 @@ interface ArticleRowProps {
   index: number;
 }
 export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
-  const { deleteRow } = useImpCalculatorContext();
+  const { deleteRow, setFieldValue, handleChange } = useImpCalculatorContext();
 
   return (
     <>
@@ -28,12 +29,23 @@ export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
             )}
           >
             <span className="text-xs text-gray-600">{column.startSymbol}</span>
-            <input
-              className="h-full w-full rounded-none border-none focus:outline-none focus:ring-0"
-              type={column.type}
-              value={article[column.name]}
-              name={`items.${index}.${column.name}`}
-            />
+
+            {column.type === "number" ? (
+              <AutoCalculateInput
+                className="h-full w-full rounded-none border-none focus:outline-none focus:ring-0"
+                value={article[column.name]}
+                name={`items[${index}].${column.name}`}
+                onChange={setFieldValue}
+              />
+            ) : (
+              <input
+                className="h-full w-full rounded-none border-none focus:outline-none focus:ring-0"
+                type={column.type}
+                value={article[column.name]}
+                name={`items[${index}].${column.name}`}
+                onChange={handleChange}
+              />
+            )}
             <span className="text-xs text-gray-600">{column.endSymbol}</span>
           </div>
         ) : (
