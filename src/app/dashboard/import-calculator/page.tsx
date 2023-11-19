@@ -1,4 +1,4 @@
-import CalculatorTable from "@/src/components/Private/Calculator/CalculatorIndex/CalculatorTable";
+import CalculatorTable from "@/src/components/Private/ImportCalculator/CalculatorIndex/CalculatorTable";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

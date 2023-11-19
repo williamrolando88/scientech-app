@@ -1,4 +1,4 @@
-import TestForm from "@/src/components/Private/Calculator/CalculatorCreate/TestForm";
+import TestForm from "@/src/components/Private/ImportCalculator/Calculator/TestForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

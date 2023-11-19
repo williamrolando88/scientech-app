@@ -1,7 +1,7 @@
 import { pathCreator } from "../lib/utils/routes";
 
 const DASHBOARD = "/dashboard";
-const CALCULATOR = "/calculator";
+const CALCULATOR = "/import-calculator";
 
 export const APP_ROUTES = {
   public: {
