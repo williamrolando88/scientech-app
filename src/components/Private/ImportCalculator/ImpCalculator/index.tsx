@@ -1,7 +1,8 @@
+import { ImpCalculatorProvider } from "@/src/hooks/useImpCalculator";
 import { FC } from "react";
 
 const ImpCalculator: FC = () => {
-  return <div>Calculator</div>;
+  return <ImpCalculatorProvider>main</ImpCalculatorProvider>;
 };
 
 export default ImpCalculator;

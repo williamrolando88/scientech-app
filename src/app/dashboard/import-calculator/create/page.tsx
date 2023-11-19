@@ -1,3 +1,4 @@
+import ImpCalculator from "@/src/components/Private/ImportCalculator/ImpCalculator";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,7 +6,11 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return <main>hola </main>;
+  return (
+    <main>
+      <ImpCalculator />
+    </main>
+  );
 };
 
 export default page;
