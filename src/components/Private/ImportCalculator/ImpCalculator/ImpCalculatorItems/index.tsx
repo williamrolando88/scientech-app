@@ -19,7 +19,7 @@ const ImpCalculatorItems: FC = () => {
         </p>
       </div>
 
-      <div className="grid-cols-23 mt-2 grid gap-1">
+      <div className="mt-2 grid grid-cols-23 gap-1">
         <ItemsTableHeader />
         <QuotedItems />
       </div>
@@ -64,6 +64,9 @@ const ItemsTableHeader = () => {
 const QuotedItems = () => {
   const { calculatorInputs } = useImpCalculatorContext();
 
+  // eslint-disable-next-line no-console
+  console.log(calculatorInputs.items);
+
   return calculatorInputs.items.map((article, idx) => (
     <ArticleRow article={article} index={idx} key={idx} />
   ));
@@ -75,6 +78,8 @@ interface Props {
 }
 
 const ArticleRow: React.FC<Props> = ({ article, index }) => {
+  const { removeArticle } = useImpCalculatorContext();
+
   return (
     <>
       {articlesHeader.map((column) =>
@@ -113,7 +118,7 @@ const ArticleRow: React.FC<Props> = ({ article, index }) => {
       <Button
         type="button"
         className="col-span-1"
-        onClick={() => alert("index")}
+        onClick={() => removeArticle(article.id)}
         variant="error"
       >
         <Iconify icon="eva:trash-2-fill" />

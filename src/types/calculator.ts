@@ -16,6 +16,7 @@ export interface ImportCalculatorSettings {
 }
 
 export interface ImportCalculatorQuotedItem {
+  id: string;
   discount: number;
   margin: number;
   name: string;

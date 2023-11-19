@@ -1,6 +1,12 @@
 "use client";
 
-import { ReactNode, createContext, useContext } from "react";
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+} from "react";
 import { useLocalStorage } from "usehooks-ts";
 import {
   IMPORT_CALCULATOR_INITIAL_VALUE,
@@ -21,6 +27,7 @@ const ImpCalculatorContext = createContext<Context>({} as Context);
 interface Context {
   calculatorInputs: ImportCalculator;
   addArticle: VoidFunction;
+  removeArticle: (id: string) => void;
 }
 
 export const ImpCalculatorProvider = ({ children }: Props) => {
@@ -30,23 +37,41 @@ export const ImpCalculatorProvider = ({ children }: Props) => {
       IMPORT_CALCULATOR_INITIAL_VALUE,
     );
 
-  const addArticle = () => {
-    // eslint-disable-next-line no-console
-    console.log("first");
+  const addArticle = useCallback(() => {
+    const article: Record<string, string | number> = {};
+    articlesHeader.forEach((column) => {
+      article[column.name] = column.initialValue;
+    });
 
-    const newArticle = articlesHeader.map((column) => ({
-      [column.name]: column.initialValue,
-    })) as unknown as ImportCalculatorQuotedItem;
+    article.id = Date.now().toString();
 
-    // eslint-disable-next-line no-console
-    console.log(newArticle);
     setCalculatorInputs((prevState) => ({
       ...prevState,
-      items: [...prevState.items, newArticle],
+      items: [
+        ...prevState.items,
+        article as unknown as ImportCalculatorQuotedItem,
+      ],
     }));
-  };
+  }, [setCalculatorInputs]);
 
-  const values: Context = { calculatorInputs, addArticle };
+  const removeArticle = useCallback(
+    (id: string) => {
+      setCalculatorInputs((prevState) => ({
+        ...prevState,
+        items: prevState.items.filter((item) => item.id !== id),
+      }));
+    },
+    [setCalculatorInputs],
+  );
+
+  const values: Context = useMemo(
+    () => ({
+      calculatorInputs,
+      addArticle,
+      removeArticle,
+    }),
+    [addArticle, calculatorInputs, removeArticle],
+  );
   return (
     <ImpCalculatorContext.Provider value={values}>
       {children}
