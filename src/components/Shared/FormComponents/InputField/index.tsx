@@ -54,7 +54,7 @@ const InputField: FC<Props> = ({
         {type !== "number" ? (
           <input
             className={clsx(
-              "peer block w-full text-ellipsis whitespace-nowrap border-none p-0  text-sm outline-2 placeholder:text-gray-500 focus:ring-0",
+              "peer block w-full text-ellipsis whitespace-nowrap border-none p-0 text-sm outline-2 placeholder:text-gray-500 focus:ring-0",
               {
                 "text-red-500 placeholder:text-red-500": error,
               },
@@ -64,7 +64,7 @@ const InputField: FC<Props> = ({
         ) : (
           <AutoCalculateInput
             className={clsx(
-              "peer block w-full text-ellipsis whitespace-nowrap border-none p-0  text-sm outline-2 placeholder:text-gray-500 focus:ring-0",
+              "peer block w-full text-ellipsis whitespace-nowrap border-none p-0 text-sm outline-2 placeholder:text-gray-500 focus:ring-0",
               {
                 "text-red-500 placeholder:text-red-500": error,
               },

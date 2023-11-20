@@ -50,6 +50,7 @@ export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
               startAdornment={column.startSymbol}
               endAdornment={column.endSymbol}
               error={getError(column.name)}
+              disabled
             />
           </div>
         ) : (
