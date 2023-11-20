@@ -24,6 +24,7 @@ const InputField: FC<Props> = ({
   label,
   onCalculationDone,
   type = "text",
+  startAdornment = null,
   endAdornment = null,
   ...props
 }) => {
@@ -40,15 +41,22 @@ const InputField: FC<Props> = ({
         </label>
       )}
 
-      <div className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 focus-within:ring-2">
-        {endAdornment}
+      <div
+        className={clsx(
+          "flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 focus-within:ring-2",
+          {
+            "border-red-500 fill-red-500 text-red-500 ring-red-500": error,
+          },
+        )}
+      >
+        {startAdornment}
 
         {type !== "number" ? (
           <input
             className={clsx(
               "peer block w-full text-ellipsis whitespace-nowrap border-none p-0  text-sm outline-2 placeholder:text-gray-500 focus:ring-0",
               {
-                "border-red-500 text-red-500 placeholder:text-red-500": error,
+                "text-red-500 placeholder:text-red-500": error,
               },
             )}
             {...props}
@@ -58,7 +66,7 @@ const InputField: FC<Props> = ({
             className={clsx(
               "peer block w-full text-ellipsis whitespace-nowrap border-none p-0  text-sm outline-2 placeholder:text-gray-500 focus:ring-0",
               {
-                "border-red-500 text-red-500 placeholder:text-red-500": error,
+                "text-red-500 placeholder:text-red-500": error,
               },
             )}
             onCalculationDone={onCalculationDone}
