@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/src/components/Shared/FormComponents/Button";
 import Iconify from "@/src/components/Shared/Iconify";
-import { articlesHeader } from "@/src/constants/importCalculator";
+import { ITEMS_STRUCTURE } from "@/src/constants/importCalculator";
 import { useImpCalculatorContext } from "@/src/hooks/useImpCalculator";
 import clsx from "clsx";
 
@@ -10,7 +10,7 @@ export const ItemsTableHeader = () => {
 
   return (
     <>
-      {articlesHeader.map((column) => (
+      {ITEMS_STRUCTURE.map((column) => (
         <p
           className={clsx(
             "flex items-center justify-center rounded-md border border-secondary-light bg-secondary-lighter px-2 py-1 text-center text-base font-bold",

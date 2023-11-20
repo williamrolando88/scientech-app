@@ -2,7 +2,7 @@
 import Button from "@/src/components/Shared/FormComponents/Button";
 import InputField from "@/src/components/Shared/FormComponents/InputField";
 import Iconify from "@/src/components/Shared/Iconify";
-import { articlesHeader } from "@/src/constants/importCalculator";
+import { ITEMS_STRUCTURE } from "@/src/constants/importCalculator";
 import { useImpCalculatorContext } from "@/src/hooks/useImpCalculator";
 import { ImportCalculatorQuotedItem } from "@/src/types/calculator";
 import clsx from "clsx";
@@ -30,7 +30,7 @@ export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
 
   return (
     <>
-      {articlesHeader.map((column) =>
+      {ITEMS_STRUCTURE.map((column) =>
         column.field === "input" ? (
           <div
             key={column.name}
@@ -50,7 +50,6 @@ export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
               startAdornment={column.startSymbol}
               endAdornment={column.endSymbol}
               error={getError(column.name)}
-              disabled
             />
           </div>
         ) : (

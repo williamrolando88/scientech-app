@@ -34,3 +34,14 @@ export type ArticlesHeader = {
   startSymbol?: string;
   endSymbol?: string;
 };
+
+export type LotSchema = {
+  title: string;
+  values: {
+    name: string;
+    value: string;
+    label?: string;
+    endSymbol?: string;
+    startSymbol?: string;
+  }[];
+};

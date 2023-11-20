@@ -2,6 +2,7 @@ import {
   ArticlesHeader,
   ImportCalculator,
   ImportCalculatorQuotedItem,
+  LotSchema,
 } from "../types/calculator";
 
 export const IMPORT_CALCULATOR_NEW_ROW: ImportCalculatorQuotedItem = {
@@ -35,7 +36,7 @@ export const IMPORT_CALCULATOR_INITIAL_VALUE: ImportCalculator = {
   },
 };
 
-export const articlesHeader: ArticlesHeader[] = [
+export const ITEMS_STRUCTURE: ArticlesHeader[] = [
   {
     name: "quantity",
     field: "input",
@@ -92,7 +93,7 @@ export const articlesHeader: ArticlesHeader[] = [
   },
 ];
 
-export const lotSchema = [
+export const SETTINGS_STRUCTURE: LotSchema[] = [
   {
     title: "Costos en Origen",
     values: [
@@ -124,4 +125,3 @@ export const lotSchema = [
     ],
   },
 ];
-export type LotSchema = typeof lotSchema;
