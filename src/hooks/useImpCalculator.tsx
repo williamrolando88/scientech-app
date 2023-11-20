@@ -27,15 +27,15 @@ interface Context {
   values: ImportCalculator;
   errors: FormikErrors<ImportCalculator>;
   touched: FormikTouched<ImportCalculator>;
-  handleChange: (e: React.ChangeEvent<unknown>) => void;
+  handleChange: (_e: React.ChangeEvent<unknown>) => void;
   resetForm: VoidFunction;
   addRow: VoidFunction;
-  deleteRow: (id: number) => void;
-  addNote: (body: string) => void;
-  deleteNote: (id: number) => void;
+  deleteRow: (_id: number) => void;
+  addNote: (_body: string) => void;
+  deleteNote: (_id: number) => void;
   setFieldValue: (
-    field: string,
-    value: string | number,
+    _field: string,
+    _value: string | number,
   ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
 }
 

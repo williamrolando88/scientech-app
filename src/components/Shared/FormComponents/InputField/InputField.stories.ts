@@ -25,6 +25,6 @@ export const WithIcons: Story = {
   args: {
     label: "This is a label",
     value: "Default input value",
-    icon: Iconify({ icon: "eva:arrow-circle-up-fill" }),
+    endAdornment: Iconify({ icon: "eva:arrow-circle-up-fill" }),
   },
 };

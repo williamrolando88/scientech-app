@@ -35,7 +35,7 @@ export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
                 className="h-full w-full rounded-none border-none focus:outline-none focus:ring-0"
                 value={article[column.name]}
                 name={`items[${index}].${column.name}`}
-                onChange={setFieldValue}
+                onCalculationDone={setFieldValue}
                 onFocus={(e) => e.target.select()}
               />
             ) : (

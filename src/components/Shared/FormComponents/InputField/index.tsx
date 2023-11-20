@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { FC, InputHTMLAttributes, ReactNode } from "react";
+import AutoCalculateInput from "../AutoCalculateInput";
 import HelperText from "../HelperText";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
@@ -7,20 +8,23 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
   /** Shows a helper text below the input */
   helperText?: string;
-  /** Adds an icon to the field */
-  icon?: ReactNode;
-  /** Indicates the icon position, default: `end` */
-  iconPosition?: "start" | "end";
+  /** Start adornment to be placed before the input field */
+  startAdornment?: ReactNode;
+  /** End adornment to be placed end the input field */
+  endAdornment?: ReactNode;
   /** Input label */
   label?: string;
+  /** Value setter. Use formik `setFieldValue` function for the best compatibility */
+  onCalculationDone?: (_field: string, _value: number) => void;
 }
 
 const InputField: FC<Props> = ({
   helperText,
   error,
-  icon,
   label,
-  iconPosition = "end",
+  onCalculationDone,
+  type = "text",
+  endAdornment = null,
   ...props
 }) => {
   return (
@@ -37,19 +41,32 @@ const InputField: FC<Props> = ({
       )}
 
       <div className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 focus-within:ring-2">
-        {icon && iconPosition === "start" && icon}
+        {endAdornment}
 
-        <input
-          className={clsx(
-            "peer block w-full text-ellipsis whitespace-nowrap border-none p-0  text-sm outline-2 placeholder:text-gray-500 focus:ring-0",
-            {
-              "border-red-500 text-red-500 placeholder:text-red-500": error,
-            },
-          )}
-          {...props}
-        />
+        {type !== "number" ? (
+          <input
+            className={clsx(
+              "peer block w-full text-ellipsis whitespace-nowrap border-none p-0  text-sm outline-2 placeholder:text-gray-500 focus:ring-0",
+              {
+                "border-red-500 text-red-500 placeholder:text-red-500": error,
+              },
+            )}
+            {...props}
+          />
+        ) : (
+          <AutoCalculateInput
+            className={clsx(
+              "peer block w-full text-ellipsis whitespace-nowrap border-none p-0  text-sm outline-2 placeholder:text-gray-500 focus:ring-0",
+              {
+                "border-red-500 text-red-500 placeholder:text-red-500": error,
+              },
+            )}
+            onCalculationDone={onCalculationDone}
+            {...props}
+          />
+        )}
 
-        {icon && iconPosition === "end" && icon}
+        {endAdornment}
       </div>
 
       <HelperText helperText={helperText} error={error} />

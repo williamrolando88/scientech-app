@@ -14,7 +14,8 @@ type Story = StoryObj<typeof metaAutoCalculateInput>;
 
 export const Default: Story = {
   args: {
-    onChange: (field: string, value: number) => console.log(field, value),
+    onCalculationDone: (field: string, value: number) =>
+      alert(`field, value: ${field}, ${value}`),
     name: "test",
   },
 };
