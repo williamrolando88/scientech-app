@@ -1,6 +1,6 @@
 "use client";
-import AutoCalculateInput from "@/src/components/Shared/FormComponents/AutoCalculateInput";
 import Button from "@/src/components/Shared/FormComponents/Button";
+import InputField from "@/src/components/Shared/FormComponents/InputField";
 import Iconify from "@/src/components/Shared/Iconify";
 import { articlesHeader } from "@/src/constants/importCalculator";
 import { useImpCalculatorContext } from "@/src/hooks/useImpCalculator";
@@ -12,7 +12,21 @@ interface ArticleRowProps {
   index: number;
 }
 export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
-  const { deleteRow, setFieldValue, handleChange } = useImpCalculatorContext();
+  const { deleteRow, setFieldValue, handleChange, errors, touched } =
+    useImpCalculatorContext();
+
+  const getError = (fieldName: keyof Partial<ImportCalculatorQuotedItem>) => {
+    if (
+      !errors.items?.length ||
+      !touched.items?.length ||
+      !touched.items[index] ||
+      !errors.items[index]
+    )
+      return false;
+
+    // @ts-expect-error - QuotedItem is a superset of the errors keys
+    return touched.items[index][fieldName] && !!errors.items[index][fieldName];
+  };
 
   return (
     <>
@@ -20,35 +34,23 @@ export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
         column.field === "input" ? (
           <div
             key={column.name}
-            className={clsx(
-              "flex items-center justify-between gap-1 rounded-md border px-2 focus-within:ring-2",
-              {
-                "col-span-8": column.name === "name",
-                "col-span-2": column.name !== "name",
-              },
-            )}
+            className={clsx("flex items-center justify-between gap-1", {
+              "col-span-8": column.name === "name",
+              "col-span-2": column.name !== "name",
+            })}
           >
-            <span className="text-xs text-gray-600">{column.startSymbol}</span>
-
-            {column.type === "number" ? (
-              <AutoCalculateInput
-                className="h-full w-full rounded-none border-none focus:outline-none focus:ring-0"
-                value={article[column.name]}
-                name={`items[${index}].${column.name}`}
-                onCalculationDone={setFieldValue}
-                onFocus={(e) => e.target.select()}
-              />
-            ) : (
-              <input
-                className="h-full w-full rounded-none border-none focus:outline-none focus:ring-0"
-                type={column.type}
-                value={article[column.name]}
-                name={`items[${index}].${column.name}`}
-                onChange={handleChange}
-                onFocus={(e) => e.target.select()}
-              />
-            )}
-            <span className="text-xs text-gray-600">{column.endSymbol}</span>
+            <InputField
+              className="h-full w-full rounded-none border-none p-0 focus:outline-none focus:ring-0"
+              type={column.type}
+              value={article[column.name]}
+              name={`items[${index}].${column.name}`}
+              onCalculationDone={setFieldValue}
+              onFocus={(e) => e.target.select()}
+              onChange={handleChange}
+              startAdornment={column.startSymbol}
+              endAdornment={column.endSymbol}
+              error={getError(column.name)}
+            />
           </div>
         ) : (
           <div
