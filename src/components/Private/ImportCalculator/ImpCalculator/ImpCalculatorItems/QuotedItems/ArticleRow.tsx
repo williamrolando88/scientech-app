@@ -35,8 +35,10 @@ export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
           <div
             key={column.name}
             className={clsx("flex items-center justify-between gap-1", {
+              "col-span-1": column.name === "quantity",
               "col-span-8": column.name === "name",
-              "col-span-2": column.name !== "name",
+              "col-span-2":
+                column.name !== "name" && column.name !== "quantity",
             })}
           >
             <InputField

@@ -25,7 +25,7 @@ module.exports = {
         250: "62.5rem", // 1000px
       },
       gridTemplateColumns: {
-        23: "repeat(23, minmax(0, 1fr))",
+        20: "repeat(20, minmax(0, 1fr))",
       },
       colors: {
         // Scientech brand colors

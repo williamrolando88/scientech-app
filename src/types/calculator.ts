@@ -9,6 +9,7 @@ export interface ImportCalculatorMetadata {
   createdAt: string;
   id: string;
   updatedAt: string;
+  description: string;
 }
 
 export type ImportCalculatorSettings = z.infer<
@@ -45,3 +46,16 @@ export type LotSchema = {
     startSymbol?: string;
   }[];
 };
+
+export interface CalculatedItem extends ImportCalculatorQuotedItem {
+  rowWeight: number;
+  EXW: number;
+  weightFraction: number;
+  FOB: number;
+  ISD: number;
+  CIF: number;
+  FODINFA: number;
+  tariff: number;
+  unitProfit: number;
+  bunchCost: number;
+}

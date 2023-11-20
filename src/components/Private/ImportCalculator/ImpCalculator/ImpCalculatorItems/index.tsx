@@ -13,7 +13,7 @@ const ImpCalculatorItems: FC = () => {
         <ArticlesTotalWeigth />
       </div>
 
-      <div className="mt-2 grid grid-cols-23 gap-1">
+      <div className="grid-cols-20 mt-2 grid gap-1">
         <ItemsTableHeader />
         <QuotedItems />
       </div>

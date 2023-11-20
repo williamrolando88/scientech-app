@@ -15,8 +15,10 @@ export const ItemsTableHeader = () => {
           className={clsx(
             "flex items-center justify-center rounded-md border border-secondary-light bg-secondary-lighter px-2 py-1 text-center text-base font-bold",
             {
+              "col-span-1": column.name === "quantity",
               "col-span-8": column.name === "name",
-              "col-span-2": column.name !== "name",
+              "col-span-2":
+                column.name !== "name" && column.name !== "quantity",
             },
           )}
           key={column.name}

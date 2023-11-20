@@ -3,7 +3,6 @@ import { z } from "zod";
 export const CalculatorSettingsValidationSchema = z.object({
   bankExpenses: z.number().min(0),
   customsAgent: z.number().min(0),
-  description: z.string(),
   fleetCostPerLibre: z.number().min(0),
   importProcedure: z.number().min(0),
   localFleet: z.number().min(0),
