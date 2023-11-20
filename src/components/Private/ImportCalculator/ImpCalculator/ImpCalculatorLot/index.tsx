@@ -31,13 +31,14 @@ const ImpCalculatorLot: FC = () => {
 export default ImpCalculatorLot;
 
 const LotCard: React.FC<LotSchema> = ({ title, values }) => {
-  const { setFieldValue } = useImpCalculatorContext();
+  const { setFieldValue, errors, touched } = useImpCalculatorContext();
 
   return (
     <div className="w-80">
       <h6 className="rounded-md border border-secondary-light bg-secondary-lighter py-1 text-center font-bold">
         {title}
       </h6>
+
       <div className="mt-1 grid grid-cols-3 items-center gap-y-1 rounded-md border p-1">
         {values.map((value, index) => (
           <Fragment key={index}>
@@ -51,6 +52,12 @@ const LotCard: React.FC<LotSchema> = ({ title, values }) => {
               onFocus={(e) => e.target.select()}
               startAdornment={value.startSymbol}
               endAdornment={value.endSymbol}
+              error={
+                // @ts-ignore
+                touched.settings?.[value.name] &&
+                // @ts-ignore
+                !!errors.settings?.[value.name]
+              }
             />
           </Fragment>
         ))}
