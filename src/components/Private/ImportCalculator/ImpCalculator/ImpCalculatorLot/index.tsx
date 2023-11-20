@@ -1,11 +1,10 @@
 "use client";
 
-import InputField from "@/src/components/Shared/FormComponents/InputField";
 import { SETTINGS_STRUCTURE } from "@/src/constants/importCalculator";
 import { useImpCalculatorContext } from "@/src/hooks/useImpCalculator";
 import { loadLotData } from "@/src/lib/modules/calculator";
-import { LotSchema } from "@/src/types/calculator";
-import { FC, Fragment } from "react";
+import { FC } from "react";
+import { LotCard } from "./LotCard";
 
 const ImpCalculatorLot: FC = () => {
   const { values } = useImpCalculatorContext();
@@ -29,39 +28,3 @@ const ImpCalculatorLot: FC = () => {
 };
 
 export default ImpCalculatorLot;
-
-const LotCard: React.FC<LotSchema> = ({ title, values }) => {
-  const { setFieldValue, errors, touched } = useImpCalculatorContext();
-
-  return (
-    <div className="w-80">
-      <h6 className="rounded-md border border-secondary-light bg-secondary-lighter py-1 text-center font-bold">
-        {title}
-      </h6>
-
-      <div className="mt-1 grid grid-cols-3 items-center gap-y-1 rounded-md border p-1">
-        {values.map((value, index) => (
-          <Fragment key={index}>
-            <p className="col-span-2 text-base">{value.label}</p>
-            <InputField
-              className="h-full w-full rounded-none border-none p-0 focus:outline-none focus:ring-0"
-              type="number"
-              value={value.value}
-              name={`settings.${value.name}`}
-              onCalculationDone={setFieldValue}
-              onFocus={(e) => e.target.select()}
-              startAdornment={value.startSymbol}
-              endAdornment={value.endSymbol}
-              error={
-                // @ts-ignore
-                touched.settings?.[value.name] &&
-                // @ts-ignore
-                !!errors.settings?.[value.name]
-              }
-            />
-          </Fragment>
-        ))}
-      </div>
-    </div>
-  );
-};
