@@ -3,9 +3,7 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:tailwindcss/recommended",
-    "plugin:storybook/recommended",
-    "@typescript-eslint/parser",
-    "@typescript-eslint/eslint-plugin"
+    "plugin:storybook/recommended"
   ],
   "overrides": [
     {
@@ -15,7 +13,7 @@
   ],
   "rules": {
     "tailwindcss/classnames-order": 0,
-    "@typescript-eslint/no-unused-vars": [
+    "no-unused-vars": [
       2,
       {
         "argsIgnorePattern": "^_",
