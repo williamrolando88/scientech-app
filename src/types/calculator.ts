@@ -47,7 +47,7 @@ export type LotSchema = {
   }[];
 };
 
-export interface CalculatedItem extends ImportCalculatorQuotedItem {
+export interface ItemCalculationValues extends ImportCalculatorQuotedItem {
   rowWeight: number;
   EXW: number;
   weightFraction: number;
@@ -56,6 +56,4 @@ export interface CalculatedItem extends ImportCalculatorQuotedItem {
   CIF: number;
   FODINFA: number;
   tariff: number;
-  unitProfit: number;
-  bunchCost: number;
 }

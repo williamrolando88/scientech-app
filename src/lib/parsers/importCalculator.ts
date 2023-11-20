@@ -11,7 +11,6 @@ export const CalculatorSettingsValidationSchema = z.object({
 });
 
 export const ItemsValidationSchema = z.object({
-  discount: z.number().gte(0),
   margin: z.number().gte(0),
   name: z.string(),
   quantity: z.number().gte(0),
