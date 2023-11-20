@@ -36,6 +36,7 @@ export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
                 value={article[column.name]}
                 name={`items[${index}].${column.name}`}
                 onChange={setFieldValue}
+                onFocus={(e) => e.target.select()}
               />
             ) : (
               <input
@@ -44,6 +45,7 @@ export const ArticleRow: React.FC<ArticleRowProps> = ({ article, index }) => {
                 value={article[column.name]}
                 name={`items[${index}].${column.name}`}
                 onChange={handleChange}
+                onFocus={(e) => e.target.select()}
               />
             )}
             <span className="text-xs text-gray-600">{column.endSymbol}</span>
