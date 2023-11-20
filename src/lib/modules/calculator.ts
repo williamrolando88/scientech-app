@@ -52,8 +52,6 @@ export const calculateImportation = (inputs: ImportCalculator) => {
   let totalFOB = 0;
 
   articles.forEach((row) => {
-    if (!row.quantity) return;
-
     row.rowWeight = row.quantity * row.unitWeight;
 
     const EXW = (row.quantity * row.unitCost * (100 + originTaxesSafe)) / 100;
@@ -69,8 +67,6 @@ export const calculateImportation = (inputs: ImportCalculator) => {
   const baseCourier = importProcedureSafe + internationalFleet;
 
   articles.forEach((row) => {
-    if (!row.quantity) return;
-
     row.weightFraction =
       row.EXW > 0 && totalWeight > 0 ? row.rowWeight / totalWeight : 0;
 
@@ -89,8 +85,6 @@ export const calculateImportation = (inputs: ImportCalculator) => {
   });
 
   articles.forEach((row) => {
-    if (!row.quantity) return;
-
     const FOBFraction = row.FOB / totalFOB;
     const originCosts =
       totalFOB > 0 ? row.FOB + bankExpensesSafe * FOBFraction : 0;
@@ -117,6 +111,7 @@ export const calculateImportation = (inputs: ImportCalculator) => {
   };
 
   return {
+    pricesArray: articles.map((article) => article.unitPrice),
     calculatorInputs,
     articlesReport: articles,
   };

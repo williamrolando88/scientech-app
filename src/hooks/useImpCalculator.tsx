@@ -16,6 +16,8 @@ import {
   IMPORT_CALCULATOR_NEW_ROW,
 } from "../constants/importCalculator";
 import { localStorageKey } from "../constants/keys";
+import { submitTestForm } from "../lib/actions/calculator";
+import { calculateImportation } from "../lib/modules/calculator";
 import { ImportCalculatorValidationSchema } from "../lib/parsers/importCalculator";
 import { ImportCalculator } from "../types/calculator";
 
@@ -37,6 +39,7 @@ interface Context {
     _field: string,
     _value: string | number,
   ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
+  calculate: VoidFunction;
 }
 
 const ImpCalculatorContext = createContext<Context>({} as Context);
@@ -106,16 +109,30 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
     resetForm({ values: IMPORT_CALCULATOR_INITIAL_VALUE });
   }, [resetForm, setCalculatorInputs]);
 
+  const calculate = useCallback(() => {
+    const { pricesArray } = calculateImportation(values);
+
+    setValues((prevState) => ({
+      ...prevState,
+      items: prevState.items.map((item, index) => ({
+        ...item,
+        unitPrice: pricesArray[index],
+      })),
+    }));
+  }, [setValues, values]);
+
   useEffect(() => {
     setCalculatorInputs(values);
-  }, [setCalculatorInputs, values]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values]);
 
   useEffect(() => {
     if (fetchedValues) {
       setCalculatorInputs(fetchedValues);
       setValues(fetchedValues);
     }
-  }, [fetchedValues, setCalculatorInputs, setValues]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const contextValues: Context = useMemo(
     () => ({
@@ -130,6 +147,7 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       resetForm,
       setFieldValue,
       touched,
+      calculate,
     }),
     [
       addNote,
@@ -143,11 +161,12 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       setFieldValue,
       touched,
       values,
+      calculate,
     ],
   );
   return (
     <ImpCalculatorContext.Provider value={contextValues}>
-      {children}
+      <form action={submitTestForm}>{children}</form>
     </ImpCalculatorContext.Provider>
   );
 };

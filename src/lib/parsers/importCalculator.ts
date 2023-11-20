@@ -12,7 +12,7 @@ export const CalculatorSettingsValidationSchema = z.object({
 
 export const ItemsValidationSchema = z.object({
   margin: z.number().gte(0),
-  name: z.string(),
+  name: z.string().optional(),
   quantity: z.number().gte(0),
   tariff: z.number().gte(0),
   unitCost: z.number().gte(0),
