@@ -3,6 +3,7 @@ import { FC } from "react";
 import ImpCalculatorControllers from "./ImpCalculatorControllers";
 import ImpCalculatorItems from "./ImpCalculatorItems";
 import ImpCalculatorLot from "./ImpCalculatorLot";
+import ImpCalculatorNotes from "./ImpCalculatorNotes";
 
 const ImpCalculator: FC = () => {
   return (
@@ -11,6 +12,7 @@ const ImpCalculator: FC = () => {
         <ImpCalculatorControllers />
         <ImpCalculatorItems />
         <ImpCalculatorLot />
+        <ImpCalculatorNotes />
       </div>
     </ImpCalculatorProvider>
   );

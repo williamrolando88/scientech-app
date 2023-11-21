@@ -2,7 +2,14 @@
 
 import { round } from "lodash";
 import { evaluate } from "mathjs";
-import { FC, InputHTMLAttributes, useEffect, useState } from "react";
+import {
+  FC,
+  ForwardedRef,
+  InputHTMLAttributes,
+  forwardRef,
+  useEffect,
+  useState,
+} from "react";
 
 export interface AutoCalculateInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "name"> {
@@ -21,48 +28,49 @@ export interface AutoCalculateInputProps
  * does.
  *
  */
-const AutoCalculateInput: FC<AutoCalculateInputProps> = ({
-  name,
-  value = 0,
-  onCalculationDone,
-  ...props
-}) => {
-  const [inputValue, setInputValue] = useState((value as number).toString());
+const AutoCalculateInput: FC<AutoCalculateInputProps> = forwardRef(
+  (
+    { name, value = 0, onCalculationDone, ...props },
+    ref: ForwardedRef<HTMLInputElement>,
+  ) => {
+    const [inputValue, setInputValue] = useState((value as number).toString());
 
-  const handleBlur = () => {
-    if (!name || !onCalculationDone) return;
+    const handleBlur = () => {
+      if (!name || !onCalculationDone) return;
 
-    try {
-      const calculate = evaluate(inputValue);
+      try {
+        const calculate = evaluate(inputValue);
 
-      if (typeof calculate === "number") {
-        setInputValue(round(calculate, 2).toString());
-        onCalculationDone(name, round(calculate, 2));
-      } else {
+        if (typeof calculate === "number") {
+          setInputValue(round(calculate, 2).toString());
+          onCalculationDone(name, round(calculate, 2));
+        } else {
+          setInputValue("0");
+          onCalculationDone(name, 0);
+        }
+      } catch (error) {
         setInputValue("0");
         onCalculationDone(name, 0);
       }
-    } catch (error) {
-      setInputValue("0");
-      onCalculationDone(name, 0);
-    }
-  };
+    };
 
-  useEffect(() => {
-    if (value === 0) {
-      setInputValue("0");
-    }
-  }, [value]);
+    useEffect(() => {
+      if (value === 0) {
+        setInputValue("0");
+      }
+    }, [value]);
 
-  return (
-    <input
-      {...props}
-      name={name}
-      onBlur={handleBlur}
-      onChange={(e) => setInputValue(e.target.value)}
-      value={inputValue}
-    />
-  );
-};
+    return (
+      <input
+        {...props}
+        ref={ref}
+        name={name}
+        onBlur={handleBlur}
+        onChange={(e) => setInputValue(e.target.value)}
+        value={inputValue}
+      />
+    );
+  },
+);
 
 export default AutoCalculateInput;
