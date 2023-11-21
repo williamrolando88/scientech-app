@@ -23,6 +23,7 @@ const Button: FC<Props> = ({
   iconPosition = "start",
   variant = "primary",
   size = "medium",
+  type = "button",
   ...props
 }) => {
   const { pending } = useFormStatus();
@@ -47,8 +48,9 @@ const Button: FC<Props> = ({
         },
         className,
       )}
-      {...props}
+      type={type}
       disabled={props.disabled || pending}
+      {...props}
     >
       {icon && iconPosition === "start" && icon}
       {children}

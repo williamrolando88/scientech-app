@@ -21,9 +21,6 @@ export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({
   const handleDoubleClick = () => {
     if (!inputRef.current) return;
 
-    // eslint-disable-next-line no-console
-    console.log("first");
-
     setDisabled(false);
     inputRef.current.focus();
     inputRef.current.select();
@@ -64,29 +61,33 @@ export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({
     typeof storedValue === "string" &&
     storedValue.startsWith("https://");
 
+  // eslint-disable-next-line no-console
+  console.log(inputRef.current);
+
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-2">
       {isLink && (
         <a href={storedValue} target="_blank" rel="noreferrer">
-          <Button color="secondary">
+          <Button type="button" variant="secondary">
             <Iconify icon="pajamas:external-link" />
           </Button>
         </a>
       )}
 
-      <InputField
-        // @ts-ignore
-        ref={inputRef}
-        key={index}
-        disabled={disabled}
-        onDoubleClick={handleDoubleClick}
-        onKeyDown={handleKeyDown}
-        onBlur={handleBlur}
-        value={currentValue}
-        onChange={(e) => setCurrentValue(e.target.value)}
-      />
+      <div onDoubleClick={handleDoubleClick} className="grow">
+        <InputField
+          // @ts-ignore
+          ref={inputRef}
+          key={index}
+          disabled={disabled}
+          onKeyDown={handleKeyDown}
+          onBlur={handleBlur}
+          value={currentValue}
+          onChange={(e) => setCurrentValue(e.target.value)}
+        />
+      </div>
 
-      <Button color="error" onClick={() => deleteNote(index)}>
+      <Button type="button" variant="error" onClick={() => deleteNote(index)}>
         <Iconify icon="pajamas:remove" />
       </Button>
     </div>
