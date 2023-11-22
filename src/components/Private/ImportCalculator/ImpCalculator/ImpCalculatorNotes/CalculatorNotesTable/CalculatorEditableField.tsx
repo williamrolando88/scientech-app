@@ -61,8 +61,7 @@ export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({
     typeof storedValue === "string" &&
     storedValue.startsWith("https://");
 
-  // eslint-disable-next-line no-console
-  console.log(inputRef.current);
+  // !It's missing enable the form ref for this field
 
   return (
     <div className="flex gap-2">
@@ -78,7 +77,7 @@ export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({
         <InputField
           // @ts-ignore
           ref={inputRef}
-          name={`notes[${index}]`}
+          name={`notes[${index}].body`}
           key={index}
           disabled={disabled}
           onKeyDown={handleKeyDown}
