@@ -20,7 +20,7 @@ export const NavLink: FC<NavLinkProps> = ({
 }) => {
   const pathName = usePathname();
 
-  const currentPage = pathName === href;
+  const currentPage = pathName.includes(href) && href !== "/";
 
   return (
     <Link
