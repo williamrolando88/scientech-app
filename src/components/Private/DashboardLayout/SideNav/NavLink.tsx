@@ -27,7 +27,7 @@ export const NavLink: FC<NavLinkProps> = ({
       key={name}
       href={href}
       className={clsx(
-        "flex items-center justify-start gap-2 rounded-md bg-terciary-lighter px-3 py-2 transition-all hover:bg-sky-100 hover:text-primary-light",
+        "flex items-center justify-start gap-2 rounded-md bg-terciary-lighter px-3 py-2  transition-all hover:bg-sky-100 hover:text-primary-light",
         { "bg-secondary-lighter text-primary-default": currentPage },
       )}
     >
@@ -37,7 +37,7 @@ export const NavLink: FC<NavLinkProps> = ({
         <Iconify icon={icon} size="30" />
       )}
 
-      {!collapsed && <p className="hidden md:block">{name}</p>}
+      {!collapsed && <p className="text-base">{name}</p>}
     </Link>
   );
 };

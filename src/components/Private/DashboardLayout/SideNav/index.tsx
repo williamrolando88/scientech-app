@@ -48,7 +48,7 @@ export default function SideNav() {
           )}
         </button>
 
-        <div className="mt-4 flex grow flex-col justify-between gap-2 text-lg font-semibold">
+        <div className="mt-4 flex grow flex-col justify-between gap-2 font-medium">
           {DASHBOARD_LINKS.map((link) => (
             <NavLink key={link.href} collapsed={collapsed} {...link} />
           ))}

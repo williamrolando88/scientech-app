@@ -17,7 +17,7 @@ export const LogoutButton: FC<LogoutButtonProps> = ({ collapsed }) => {
       >
         <Iconify icon="ic:round-logout" size="30" />
 
-        {!collapsed && <span>Sign Out</span>}
+        {!collapsed && <span className="text-base">Sign Out</span>}
       </button>
     </form>
   );
