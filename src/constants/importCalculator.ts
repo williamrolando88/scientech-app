@@ -6,7 +6,6 @@ import {
 } from "../types/calculator";
 
 export const IMPORT_CALCULATOR_NEW_ROW: ImportCalculatorQuotedItem = {
-  discount: 0,
   margin: 0,
   name: "",
   quantity: 1,
