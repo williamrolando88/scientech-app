@@ -25,6 +25,16 @@ export const WithIcons: Story = {
   args: {
     label: "This is a label",
     value: "Default input value",
-    icon: Iconify({ icon: "eva:arrow-circle-up-fill" }),
+    endAdornment: Iconify({ icon: "eva:arrow-circle-up-fill" }),
+  },
+};
+
+export const WithCalculation: Story = {
+  args: {
+    type: "number",
+    endAdornment: Iconify({ icon: "eva:arrow-circle-up-fill" }),
+    onCalculationDone: (_field: string, _value: number) =>
+      alert("Calculation done"),
+    name: "test",
   },
 };

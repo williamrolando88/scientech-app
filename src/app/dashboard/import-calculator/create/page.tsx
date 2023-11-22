@@ -1,15 +1,20 @@
-import TestForm from "@/src/components/Private/ImportCalculator/Calculator/TestForm";
+import ImpCalculator from "@/src/components/Private/ImportCalculator/ImpCalculator";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Calculadora",
+  title: "Calculadora de Importaciones",
 };
+
+// const ImpCalculator = dynamic(
+//   () => import("@/src/components/Private/ImportCalculator/ImpCalculator"),
+//   { ssr: false },
+// );
 
 const page = () => {
   return (
-    <div>
-      <TestForm />
-    </div>
+    <main>
+      <ImpCalculator />
+    </main>
   );
 };
 

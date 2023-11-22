@@ -26,7 +26,7 @@ const LoginForm: FC = () => {
           name="email"
           placeholder="Enter your email address"
           label="Email"
-          icon={<Iconify icon="eva:at-fill" />}
+          endAdornment={<Iconify icon="eva:at-fill" />}
         />
 
         <br />
@@ -37,7 +37,7 @@ const LoginForm: FC = () => {
           name="password"
           placeholder="Enter password"
           label="Password"
-          icon={
+          endAdornment={
             showPassword ? (
               <button type="button" onClick={() => setShowPassword(false)}>
                 <Iconify icon="eva:eye-off-2-fill" />

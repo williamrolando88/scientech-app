@@ -21,6 +21,7 @@
         "varsIgnorePattern": "^_"
       }
     ],
-    "no-console": 2
+    "no-console": 2,
+    "react/display-name": 0
   }
 }
