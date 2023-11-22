@@ -107,7 +107,6 @@ export const SETTINGS_STRUCTURE: LotSchema[] = [
         value: "importProcedure",
         startSymbol: "$",
       },
-      { name: "Agente aduanero:", value: "customsAgent", startSymbol: "$" },
     ],
   },
   {
