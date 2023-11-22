@@ -78,6 +78,7 @@ export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({
         <InputField
           // @ts-ignore
           ref={inputRef}
+          name={`notes[${index}]`}
           key={index}
           disabled={disabled}
           onKeyDown={handleKeyDown}
