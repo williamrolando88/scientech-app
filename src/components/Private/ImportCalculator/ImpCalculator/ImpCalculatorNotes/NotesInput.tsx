@@ -28,9 +28,6 @@ export const NotesInput = () => {
     }
   };
 
-  // eslint-disable-next-line no-console
-  console.log(inputRef.current?.value);
-
   return (
     <InputField
       // @ts-ignore

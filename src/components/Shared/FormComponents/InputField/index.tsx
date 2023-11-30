@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC, ForwardedRef, InputHTMLAttributes, ReactNode } from "react";
+import React, { ForwardedRef, InputHTMLAttributes, ReactNode } from "react";
 import AutoCalculateInput from "../AutoCalculateInput";
 import HelperText from "../HelperText";
 
@@ -18,7 +18,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   onCalculationDone?: (_field: string, _value: number) => void;
 }
 
-const InputField: FC<Props> = React.forwardRef(
+const InputField = React.forwardRef(
   (
     {
       helperText,
@@ -29,7 +29,7 @@ const InputField: FC<Props> = React.forwardRef(
       startAdornment = null,
       endAdornment = null,
       ...props
-    },
+    }: Props,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     return (
@@ -75,6 +75,7 @@ const InputField: FC<Props> = React.forwardRef(
                 },
               )}
               onCalculationDone={onCalculationDone}
+              ref={ref}
               {...props}
             />
           )}

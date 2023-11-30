@@ -85,6 +85,14 @@ export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({
           value={currentValue}
           onChange={(e) => setCurrentValue(e.target.value)}
         />
+
+        <input
+          className="sr-only"
+          type="text"
+          name={`notes[${index}].body`}
+          value={currentValue}
+          readOnly
+        />
       </div>
 
       <Button type="button" variant="error" onClick={() => deleteNote(index)}>
