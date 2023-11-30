@@ -8,8 +8,9 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useState,
 } from "react";
-import { useLocalStorage } from "usehooks-ts";
+import { useDebounce, useEffectOnce, useLocalStorage } from "usehooks-ts";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import {
   IMPORT_CALCULATOR_INITIAL_VALUE,
@@ -40,6 +41,8 @@ interface Context {
   ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
   touched: FormikTouched<ImportCalculator>;
   calculate: VoidFunction;
+  totalCost: number;
+  totalWeight: number;
 }
 
 const ImpCalculatorContext = createContext<Context>({} as Context);
@@ -50,6 +53,8 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       localStorageKey.importCalculator,
       IMPORT_CALCULATOR_INITIAL_VALUE,
     );
+  const [totalWeight, setTotalWeight] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
 
   const {
     values,
@@ -66,6 +71,8 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       ImportCalculatorValidationSchema,
     ),
   });
+
+  const debouncedValues = useDebounce<ImportCalculator>(values, 500);
 
   const addRow = useCallback(() => {
     setValues((prevState) => ({
@@ -122,17 +129,27 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   }, [setValues, values]);
 
   useEffect(() => {
-    setCalculatorInputs(values);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [values]);
+    setCalculatorInputs(debouncedValues);
+    setTotalCost(
+      debouncedValues.items.reduce(
+        (acc, item) => acc + item.unitCost * item.quantity,
+        0,
+      ),
+    );
+    setTotalWeight(
+      debouncedValues.items.reduce(
+        (acc, item) => acc + item.unitWeight * item.quantity,
+        0,
+      ),
+    );
+  }, [debouncedValues, setCalculatorInputs]);
 
-  useEffect(() => {
+  useEffectOnce(() => {
     if (fetchedValues) {
       setCalculatorInputs(fetchedValues);
       setValues(fetchedValues);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   const contextValues: Context = useMemo(
     () => ({
@@ -147,6 +164,8 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       setFieldValue,
       touched,
       calculate,
+      totalCost,
+      totalWeight,
     }),
     [
       addNote,
@@ -160,6 +179,8 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       touched,
       values,
       calculate,
+      totalCost,
+      totalWeight,
     ],
   );
   return (
