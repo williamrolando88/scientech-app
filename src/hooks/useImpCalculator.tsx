@@ -27,18 +27,18 @@ interface Props {
 }
 interface Context {
   values: ImportCalculator;
-  errors: FormikErrors<ImportCalculator>;
-  touched: FormikTouched<ImportCalculator>;
-  handleChange: (_e: React.ChangeEvent<unknown>) => void;
-  resetForm: VoidFunction;
   addRow: VoidFunction;
   deleteRow: (_id: number) => void;
+  resetCalculator: VoidFunction;
   addNote: (_body: string) => void;
   deleteNote: (_id: number) => void;
+  errors: FormikErrors<ImportCalculator>;
+  handleChange: (_e: React.ChangeEvent<unknown>) => void;
   setFieldValue: (
     _field: string,
     _value: string | number,
   ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
+  touched: FormikTouched<ImportCalculator>;
   calculate: VoidFunction;
 }
 
@@ -85,10 +85,10 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   );
 
   const addNote = useCallback(
-    (body: string) => {
+    (note: string) => {
       setValues((prevState) => ({
         ...prevState,
-        notes: [...prevState.notes, { body }],
+        notes: [...prevState.notes, note],
       }));
     },
     [setValues],
@@ -144,7 +144,6 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       deleteNote,
       errors,
       handleChange,
-      resetForm,
       setFieldValue,
       touched,
       calculate,
@@ -157,7 +156,6 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       errors,
       handleChange,
       resetCalculator,
-      resetForm,
       setFieldValue,
       touched,
       values,

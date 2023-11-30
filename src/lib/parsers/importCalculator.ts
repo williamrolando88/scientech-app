@@ -20,12 +20,8 @@ export const ItemsValidationSchema = z.object({
   unitWeight: z.number().gte(0),
 });
 
-export const NotesValidationSchema = z.object({
-  body: z.string(),
-});
-
 export const ImportCalculatorValidationSchema = z.object({
   settings: CalculatorSettingsValidationSchema,
   items: ItemsValidationSchema.array(),
-  notes: NotesValidationSchema.array(),
+  notes: z.string().array(),
 });
