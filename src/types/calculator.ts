@@ -1,7 +1,7 @@
 import { z } from "zod";
 import {
   CalculatorSettingsValidationSchema,
-  ItemsValidationSchema
+  ItemsValidationSchema,
 } from "../lib/parsers/importCalculator";
 
 export interface ImportCalculatorMetadata {
@@ -16,7 +16,6 @@ export type ImportCalculatorSettings = z.infer<
 >;
 
 export type ImportCalculatorQuotedItem = z.infer<typeof ItemsValidationSchema>;
-
 
 export interface ImportCalculator {
   metadata: ImportCalculatorMetadata;

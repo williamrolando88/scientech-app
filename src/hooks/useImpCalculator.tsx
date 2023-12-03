@@ -117,7 +117,10 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   }, [resetForm, setCalculatorInputs]);
 
   const calculate = useCallback(() => {
-    const { pricesArray } = calculateImportation(values);
+    const { pricesArray, articlesReport } = calculateImportation(values);
+
+    // eslint-disable-next-line no-console
+    console.log(articlesReport);
 
     setValues((prevState) => ({
       ...prevState,
