@@ -18,7 +18,10 @@ import {
 } from "../constants/importCalculator";
 import { localStorageKey } from "../constants/keys";
 import { submitTestForm } from "../lib/actions/calculator";
-import { calculateImportation } from "../lib/modules/calculator";
+import {
+  calculateImportation,
+  getImportReport,
+} from "../lib/modules/calculator";
 import { ImportCalculatorValidationSchema } from "../lib/parsers/importCalculator";
 import { ImportCalculator } from "../types/calculator";
 
@@ -43,6 +46,7 @@ interface Context {
   calculate: VoidFunction;
   totalCost: number;
   totalWeight: number;
+  calculatorReport: ApexAxisChartSeries;
 }
 
 const ImpCalculatorContext = createContext<Context>({} as Context);
@@ -55,6 +59,9 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
     );
   const [totalWeight, setTotalWeight] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
+  const [calculatorReport, setCalculatorReport] = useState<ApexAxisChartSeries>(
+    [],
+  );
 
   const {
     values,
@@ -129,6 +136,8 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
         unitPrice: pricesArray[index],
       })),
     }));
+
+    setCalculatorReport(getImportReport(articlesReport));
   }, [setValues, values]);
 
   useEffect(() => {
@@ -169,6 +178,7 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       calculate,
       totalCost,
       totalWeight,
+      calculatorReport,
     }),
     [
       addNote,
@@ -184,6 +194,7 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       calculate,
       totalCost,
       totalWeight,
+      calculatorReport,
     ],
   );
   return (
