@@ -40,6 +40,11 @@ export const calculateImportation = (inputs: ImportCalculator) => {
     name: article.name,
     rowWeight: 0,
     weightFraction: 0,
+    unitOriginCosts: 0,
+    unitTaxesFee: 0,
+    unitImportCost: 0,
+    unitLocalFleetCost: 0,
+    unitItemProfit: 0,
   }));
 
   const bankExpensesSafe = parseSafeNumber(bankExpenses);
@@ -118,6 +123,13 @@ export const calculateImportation = (inputs: ImportCalculator) => {
     // Calculate item unit price
     row.unitPrice =
       row.quantity > 0 ? round((profit + itemCost) / row.quantity, 2) : 0;
+
+    // Calculate item unit details
+    row.unitOriginCosts = originCosts / row.quantity;
+    row.unitTaxesFee = itemTaxes / row.quantity;
+    row.unitImportCost = importCost / row.quantity;
+    row.unitLocalFleetCost = localFleetCost / row.quantity;
+    row.unitItemProfit = profit / row.quantity;
   });
 
   return {

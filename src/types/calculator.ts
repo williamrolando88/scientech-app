@@ -53,4 +53,9 @@ export interface ItemCalculationValues extends ImportCalculatorQuotedItem {
   CIF: number;
   FODINFA: number;
   tariff: number;
+  unitOriginCosts: number;
+  unitTaxesFee: number;
+  unitImportCost: number;
+  unitLocalFleetCost: number;
+  unitItemProfit: number;
 }
