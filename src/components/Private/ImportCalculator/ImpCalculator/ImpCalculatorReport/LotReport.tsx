@@ -7,21 +7,22 @@ const LotReport: FC = () => {
   const { totalCost, totalWeight } = useImpCalculatorContext();
 
   return (
-    <div>
-      <h4>
+    <div className="flex gap-8 self-end">
+      <p className="text-sm">
         Peso total:
         <span>
           <strong> {totalWeight} </strong>
         </span>
         libras
-      </h4>
+      </p>
 
-      <h4>
+      <p className="text-sm">
         Costo total: $
         <span>
-          <strong> {totalCost}</strong>
+          <strong> {totalCost} </strong>
         </span>
-      </h4>
+        USD
+      </p>
     </div>
   );
 };

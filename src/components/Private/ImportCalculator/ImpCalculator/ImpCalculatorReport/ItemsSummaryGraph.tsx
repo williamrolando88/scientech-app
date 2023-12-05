@@ -27,9 +27,6 @@ const ItemsSummaryGraph: FC = () => {
               horizontal: true,
             },
           },
-          title: {
-            text: "Summary",
-          },
           xaxis: {
             categories: values.items.map((item) => item.name),
           },
