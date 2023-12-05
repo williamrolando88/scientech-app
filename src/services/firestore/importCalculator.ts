@@ -9,12 +9,12 @@ class ImportCalculatorCollection {
     this.collection = collection(FirebaseClient.db, "importCalculator");
   }
 
-  save = async (data: ImportCalculator) => {
+  create = async (data: ImportCalculator) => {
     try {
       const docRef = await addDoc(this.collection, data);
       return docRef.id;
     } catch (e) {
-      console.error("Error adding document: ", e);
+      console.error("Error storing document: ", e);
       return null;
     }
   };
