@@ -3,8 +3,8 @@
 import Button from "@/src/components/Shared/FormComponents/Button";
 import Iconify from "@/src/components/Shared/Iconify";
 import { useImpCalculatorContext } from "@/src/hooks/useImpCalculator";
-import { Dialog } from "@headlessui/react";
 import { FC, useState } from "react";
+import { SaveConfirmation } from "./SaveConfirmation";
 
 const ImpCalculatorControllers: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState(false);
@@ -38,24 +38,3 @@ const ImpCalculatorControllers: FC = () => {
 };
 
 export default ImpCalculatorControllers;
-
-interface SaveConfirmationProps {
-  open: boolean;
-  setOpen: (open: boolean) => void;
-}
-
-const SaveConfirmation: FC<SaveConfirmationProps> = ({ open, setOpen }) => {
-  const closeModal = () => {
-    setOpen(false);
-  };
-
-  return (
-    <Dialog open={open} onClose={closeModal}>
-      <Dialog.Overlay />
-      <Dialog.Title>Guardar calculo</Dialog.Title>
-      <Dialog.Description>¿Desea guardar el calculo?</Dialog.Description>
-      <Button onClick={closeModal}>Cancelar</Button>
-      <Button>Guardar</Button>
-    </Dialog>
-  );
-};
