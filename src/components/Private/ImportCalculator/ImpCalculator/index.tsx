@@ -4,6 +4,7 @@ import ImpCalculatorControllers from "./ImpCalculatorControllers";
 import ImpCalculatorItems from "./ImpCalculatorItems";
 import ImpCalculatorLot from "./ImpCalculatorLot";
 import ImpCalculatorNotes from "./ImpCalculatorNotes";
+import { ImpCalculatorReport } from "./ImpCalculatorReport";
 
 const ImpCalculator: FC = () => {
   return (
@@ -13,6 +14,7 @@ const ImpCalculator: FC = () => {
         <ImpCalculatorItems />
         <ImpCalculatorLot />
         <ImpCalculatorNotes />
+        <ImpCalculatorReport />
       </div>
     </ImpCalculatorProvider>
   );

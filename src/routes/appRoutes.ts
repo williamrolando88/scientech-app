@@ -6,10 +6,7 @@ const CALCULATOR = "/import-calculator";
 export const APP_ROUTES = {
   public: {
     root: "/",
-    login:
-      process.env.NODE_ENV === "development"
-        ? "/login"
-        : "https://app.scientech-ec.com/login",
+    login: process.env.NODE_ENV === "development" ? "/login" : "https://app.scientech-ec.com/login",
     products: "/products",
     contact: "/contact",
     termsAndConditions: "/terminos-y-condiciones",
@@ -20,7 +17,7 @@ export const APP_ROUTES = {
     xmlParser: pathCreator(DASHBOARD, "/xml-parser"),
     calculator: {
       index: pathCreator(DASHBOARD, CALCULATOR),
-      create: pathCreator(DASHBOARD, CALCULATOR, "/create"),
+      new: pathCreator(DASHBOARD, CALCULATOR, "/new"),
     },
   },
 };

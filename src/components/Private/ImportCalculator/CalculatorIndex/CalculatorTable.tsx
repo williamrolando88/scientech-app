@@ -5,7 +5,7 @@ import { FC } from "react";
 const CalculatorTable: FC = () => {
   return (
     <div>
-      <Link href={APP_ROUTES.private.calculator.create}>Create</Link>
+      <Link href={APP_ROUTES.private.calculator.new}>Create</Link>
     </div>
   );
 };
