@@ -8,8 +8,9 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useState,
 } from "react";
-import { useLocalStorage } from "usehooks-ts";
+import { useDebounce, useEffectOnce, useLocalStorage } from "usehooks-ts";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import {
   IMPORT_CALCULATOR_INITIAL_VALUE,
@@ -27,19 +28,21 @@ interface Props {
 }
 interface Context {
   values: ImportCalculator;
-  errors: FormikErrors<ImportCalculator>;
-  touched: FormikTouched<ImportCalculator>;
-  handleChange: (_e: React.ChangeEvent<unknown>) => void;
-  resetForm: VoidFunction;
   addRow: VoidFunction;
   deleteRow: (_id: number) => void;
+  resetCalculator: VoidFunction;
   addNote: (_body: string) => void;
   deleteNote: (_id: number) => void;
+  errors: FormikErrors<ImportCalculator>;
+  handleChange: (_e: React.ChangeEvent<unknown>) => void;
   setFieldValue: (
     _field: string,
     _value: string | number,
   ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
+  touched: FormikTouched<ImportCalculator>;
   calculate: VoidFunction;
+  totalCost: number;
+  totalWeight: number;
 }
 
 const ImpCalculatorContext = createContext<Context>({} as Context);
@@ -50,6 +53,8 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       localStorageKey.importCalculator,
       IMPORT_CALCULATOR_INITIAL_VALUE,
     );
+  const [totalWeight, setTotalWeight] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
 
   const {
     values,
@@ -66,6 +71,8 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       ImportCalculatorValidationSchema,
     ),
   });
+
+  const debouncedValues = useDebounce<ImportCalculator>(values, 500);
 
   const addRow = useCallback(() => {
     setValues((prevState) => ({
@@ -85,10 +92,10 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   );
 
   const addNote = useCallback(
-    (body: string) => {
+    (note: string) => {
       setValues((prevState) => ({
         ...prevState,
-        notes: [...prevState.notes, { body }],
+        notes: [...prevState.notes, note],
       }));
     },
     [setValues],
@@ -110,7 +117,10 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   }, [resetForm, setCalculatorInputs]);
 
   const calculate = useCallback(() => {
-    const { pricesArray } = calculateImportation(values);
+    const { pricesArray, articlesReport } = calculateImportation(values);
+
+    // eslint-disable-next-line no-console
+    console.log(articlesReport);
 
     setValues((prevState) => ({
       ...prevState,
@@ -122,17 +132,27 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   }, [setValues, values]);
 
   useEffect(() => {
-    setCalculatorInputs(values);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [values]);
+    setCalculatorInputs(debouncedValues);
+    setTotalCost(
+      debouncedValues.items.reduce(
+        (acc, item) => acc + item.unitCost * item.quantity,
+        0,
+      ),
+    );
+    setTotalWeight(
+      debouncedValues.items.reduce(
+        (acc, item) => acc + item.unitWeight * item.quantity,
+        0,
+      ),
+    );
+  }, [debouncedValues, setCalculatorInputs]);
 
-  useEffect(() => {
+  useEffectOnce(() => {
     if (fetchedValues) {
       setCalculatorInputs(fetchedValues);
       setValues(fetchedValues);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   const contextValues: Context = useMemo(
     () => ({
@@ -144,10 +164,11 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       deleteNote,
       errors,
       handleChange,
-      resetForm,
       setFieldValue,
       touched,
       calculate,
+      totalCost,
+      totalWeight,
     }),
     [
       addNote,
@@ -157,11 +178,12 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       errors,
       handleChange,
       resetCalculator,
-      resetForm,
       setFieldValue,
       touched,
       values,
       calculate,
+      totalCost,
+      totalWeight,
     ],
   );
   return (

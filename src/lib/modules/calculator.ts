@@ -28,13 +28,14 @@ export const calculateImportation = (inputs: ImportCalculator) => {
     quantity: parseSafeNumber(article.quantity),
     unitWeight: parseSafeNumber(article.unitWeight),
     unitCost: parseSafeNumber(article.unitCost),
-    tariff: parseSafeNumber(article.tariff),
+    tariffRate: parseSafeNumber(article.tariffRate),
     margin: parseSafeNumber(article.margin),
     unitPrice: parseSafeNumber(article.unitPrice),
     CIF: 0,
     EXW: 0,
     FOB: 0,
     FODINFA: 0,
+    tariff: 0,
     ISD: 0,
     name: article.name,
     rowWeight: 0,
@@ -48,25 +49,26 @@ export const calculateImportation = (inputs: ImportCalculator) => {
   const originFleetSafe = parseSafeNumber(originFleet);
   const originTaxesSafe = parseSafeNumber(originTaxes);
 
-  let totalWeight = 0;
-  let totalFOB = 0;
-
   articles.forEach((row) => {
+    // Calculate row weight
     row.rowWeight = row.quantity * row.unitWeight;
 
+    // Calculate EXW item values
     const EXW = (row.quantity * row.unitCost * (100 + originTaxesSafe)) / 100;
     row.EXW = parseSafeNumber(EXW);
-
-    if (row.EXW > 0) {
-      totalWeight += row.rowWeight;
-    }
   });
 
-  // Calculate aux lot variables
+  // Calculate total weight
+  const totalWeight = articles.reduce(
+    (acc, row) => (row.EXW ? acc + row.rowWeight : 0),
+    0,
+  );
+
+  // Calculate international fleet
   const internationalFleet = totalWeight * importFleetPerLibreSafe;
-  const baseCourier = importProcedureSafe + internationalFleet;
 
   articles.forEach((row) => {
+    // Calculate weight fraction
     row.weightFraction =
       row.EXW > 0 && totalWeight > 0 ? row.rowWeight / totalWeight : 0;
 
@@ -77,42 +79,49 @@ export const calculateImportation = (inputs: ImportCalculator) => {
     // Calculate aux CIF item values
     row.CIF =
       (row.FOB + internationalFleet * row.weightFraction) * (1 + insuranceRate);
-    row.FODINFA = row.CIF * fodinfaTax;
-    row.tariff = (row.CIF * row.tariff) / 100;
 
-    // Asign values to lot variables
-    totalFOB += row.FOB;
+    // Calculate item taxes
+    row.FODINFA = row.CIF * fodinfaTax;
+    row.tariff = (row.CIF * row.tariffRate) / 100;
   });
+
+  // Calculate total FOB
+  const totalFOB = articles.reduce((acc, row) => acc + row.FOB, 0);
+
+  // Calculate base courier cost
+  const baseCourier = importProcedureSafe + internationalFleet;
 
   articles.forEach((row) => {
     const FOBFraction = row.FOB / totalFOB;
+
+    // Group item cost related to payments and taxes in origin
     const originCosts =
       totalFOB > 0 ? row.FOB + bankExpensesSafe * FOBFraction : 0;
+
+    // Group item taxes paid locally
     const itemTaxes = row.ISD + row.FODINFA + row.tariff;
+
+    // Calculate item importation costs
     const importCost = baseCourier * row.weightFraction;
+
+    // Calculate item local fleet costs
     const localFleetCost = localFleetSafe * row.weightFraction;
 
     const itemCost = originCosts + itemTaxes + importCost + localFleetCost;
+
+    // Calculate item profit
     const profit =
       row.margin < 100
         ? itemCost / (1 - row.margin / 100) - itemCost
         : (itemCost * row.margin) / 100;
-    const rowPrice = profit + itemCost;
 
-    row.unitPrice = row.quantity > 0 ? round(rowPrice / row.quantity, 2) : 0;
+    // Calculate item unit price
+    row.unitPrice =
+      row.quantity > 0 ? round((profit + itemCost) / row.quantity, 2) : 0;
   });
-
-  const calculatorInputs: ImportCalculator = {
-    ...inputs,
-    items: items.map((item, index) => ({
-      ...item,
-      unitPrice: articles[index].unitPrice,
-    })),
-  };
 
   return {
     pricesArray: articles.map((article) => article.unitPrice),
-    calculatorInputs,
     articlesReport: articles,
   };
 };

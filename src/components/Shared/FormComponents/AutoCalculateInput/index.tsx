@@ -3,7 +3,6 @@
 import { round } from "lodash";
 import { evaluate } from "mathjs";
 import {
-  FC,
   ForwardedRef,
   InputHTMLAttributes,
   forwardRef,
@@ -28,9 +27,9 @@ export interface AutoCalculateInputProps
  * does.
  *
  */
-const AutoCalculateInput: FC<AutoCalculateInputProps> = forwardRef(
+const AutoCalculateInput = forwardRef(
   (
-    { name, value = 0, onCalculationDone, ...props },
+    { name, value = 0, onCalculationDone, ...props }: AutoCalculateInputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const [inputValue, setInputValue] = useState((value as number).toString());

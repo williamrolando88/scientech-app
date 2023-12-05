@@ -9,7 +9,7 @@ export const IMPORT_CALCULATOR_NEW_ROW: ImportCalculatorQuotedItem = {
   margin: 0,
   name: "",
   quantity: 1,
-  tariff: 0,
+  tariffRate: 0,
   unitCost: 0,
   unitPrice: 0,
   unitWeight: 1,
@@ -63,7 +63,7 @@ export const ITEMS_STRUCTURE: ArticlesHeader[] = [
     startSymbol: "$",
   },
   {
-    name: "tariff",
+    name: "tariffRate",
     field: "input",
     type: "number",
     title: "Arancel",

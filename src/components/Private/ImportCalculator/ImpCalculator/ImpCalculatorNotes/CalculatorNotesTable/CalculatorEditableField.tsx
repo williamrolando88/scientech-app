@@ -13,7 +13,7 @@ export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({
   index,
 }) => {
   const { values, setFieldValue, deleteNote } = useImpCalculatorContext();
-  const storedValue = values.notes[index].body;
+  const storedValue = values.notes[index];
   const [disabled, setDisabled] = useState(true);
   const [currentValue, setCurrentValue] = useState(storedValue);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -77,13 +77,21 @@ export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({
         <InputField
           // @ts-ignore
           ref={inputRef}
-          name={`notes[${index}].body`}
+          name={`notes[${index}]`}
           key={index}
           disabled={disabled}
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
           value={currentValue}
           onChange={(e) => setCurrentValue(e.target.value)}
+        />
+
+        <input
+          className="sr-only"
+          type="text"
+          name={`notes[${index}]`}
+          value={currentValue}
+          readOnly
         />
       </div>
 

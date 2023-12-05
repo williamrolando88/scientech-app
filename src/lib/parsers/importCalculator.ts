@@ -14,18 +14,14 @@ export const ItemsValidationSchema = z.object({
   margin: z.number().gte(0),
   name: z.string().optional(),
   quantity: z.number().gte(0),
-  tariff: z.number().gte(0),
+  tariffRate: z.number().gte(0),
   unitCost: z.number().gte(0),
   unitPrice: z.number(),
   unitWeight: z.number().gte(0),
 });
 
-export const NotesValidationSchema = z.object({
-  body: z.string(),
-});
-
 export const ImportCalculatorValidationSchema = z.object({
   settings: CalculatorSettingsValidationSchema,
   items: ItemsValidationSchema.array(),
-  notes: NotesValidationSchema.array(),
+  notes: z.string().array(),
 });
