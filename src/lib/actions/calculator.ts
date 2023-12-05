@@ -1,6 +1,13 @@
 "use server";
 
-export async function submitTestForm(formData: FormData) {
+import importCalculation from "@/src/services/firestore/importCalculator";
+import { assembleImportCalculatorData } from "../modules/calculator";
+
+export const submitTestForm = async (formData: FormData) => {
+  const data = assembleImportCalculatorData(formData);
+
+  const docId = await importCalculation.save(data);
+
   // eslint-disable-next-line no-console
-  console.log(formData);
-}
+  console.log(docId);
+};

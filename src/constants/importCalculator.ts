@@ -18,15 +18,11 @@ export const IMPORT_CALCULATOR_NEW_ROW: ImportCalculatorQuotedItem = {
 export const IMPORT_CALCULATOR_INITIAL_VALUE: ImportCalculator = {
   items: [],
   metadata: {
-    id: "",
-    createdAt: "",
-    updatedAt: "",
     description: "",
   },
   notes: [],
   settings: {
     bankExpenses: 0,
-    customsAgent: 0,
     fleetCostPerLibre: 0,
     importProcedure: 0,
     localFleet: 0,
@@ -98,7 +94,7 @@ export const SETTINGS_STRUCTURE: LotSchema[] = [
     values: [
       {
         name: "Costo de flete [USD/lb]:",
-        value: "importFleetPerLibre",
+        value: "fleetCostPerLibre",
         startSymbol: "$",
       },
       {
