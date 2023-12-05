@@ -17,7 +17,7 @@ import {
   IMPORT_CALCULATOR_NEW_ROW,
 } from "../constants/importCalculator";
 import { localStorageKey } from "../constants/keys";
-import { submitTestForm } from "../lib/actions/calculator";
+import { storeCalculation } from "../lib/actions/calculator";
 import { calculateImportation, getImportReport } from "../lib/modules/calculator";
 import { ImportCalculatorValidationSchema } from "../lib/parsers/importCalculator";
 import { ImportCalculator } from "../types/calculator";
@@ -176,7 +176,7 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   );
   return (
     <ImpCalculatorContext.Provider value={contextValues}>
-      <form action={submitTestForm}>{children}</form>
+      <form action={storeCalculation}>{children}</form>
     </ImpCalculatorContext.Provider>
   );
 };
