@@ -7,7 +7,7 @@ import Chart from "react-apexcharts";
 const ItemsSummaryGraph: FC = () => {
   const { calculatorReport, values } = useImpCalculatorContext();
 
-  if (typeof window === "undefined" || !values.items.length) return null;
+  if (!values.items.length) return null;
 
   return (
     <div className="w-full">
