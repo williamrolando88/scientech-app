@@ -5,7 +5,7 @@
 To start working in the dev environment is required to have the following `.env` file in the root of the project:
 
 ```
-# Firebase config
+# Firebase client config
 API_KEY=XXXXXXX
 AUTH_DOMAIN=XXXXXXX
 PROJECT_ID=XXXXXXX
@@ -20,6 +20,9 @@ AUTH_URL=http://localhost:3000/api/auth
 # Forms config
 FORMSPREE_SALES=XXXXXX
 FORMSPREE_PROJECTS=XXXXXX
+
+# Firebase admin config
+SERVICE_ACCOUNT=XXXXXX
 ```
 
 Each of the values can be found in the firebase console.
@@ -27,6 +30,8 @@ Each of the values can be found in the firebase console.
 The `AUTH_SECRET` is a random string that will be used to sign the JWT tokens.
 
 The `FORMSPREE_SALES` and `FORMSPREE_PROJECTS` are the form ids for the sales and projects forms respectively.
+
+The `SERVICE_ACCOUNT` value is provided for Firebase to authenticate the admin console
 
 ## Development
 
