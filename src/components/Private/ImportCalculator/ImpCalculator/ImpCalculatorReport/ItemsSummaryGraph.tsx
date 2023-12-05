@@ -4,9 +4,10 @@ import { useImpCalculatorContext } from "@/src/hooks/useImpCalculator";
 import { FC } from "react";
 import Chart from "react-apexcharts";
 
-export const ItemsSummaryGraph: FC = () => {
+const ItemsSummaryGraph: FC = () => {
   const { calculatorReport, values } = useImpCalculatorContext();
-  if (typeof window === "undefined" || !calculatorReport.length) return null;
+
+  if (typeof window === "undefined" || !values.items.length) return null;
 
   return (
     <div className="w-full">
@@ -48,3 +49,5 @@ export const ItemsSummaryGraph: FC = () => {
     </div>
   );
 };
+
+export default ItemsSummaryGraph;

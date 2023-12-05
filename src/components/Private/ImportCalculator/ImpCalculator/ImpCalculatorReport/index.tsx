@@ -1,5 +1,7 @@
+import dynamic from "next/dynamic";
 import { FC } from "react";
-import { ItemsSummaryGraph } from "./ItemsSummaryGraph";
+
+const ItemsSummaryGraph = dynamic(() => import("./ItemsSummaryGraph"), { ssr: false });
 
 export const ImpCalculatorReport: FC = () => {
   return (
