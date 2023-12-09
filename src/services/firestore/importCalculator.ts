@@ -9,7 +9,7 @@ class ImportCalculatorCollection {
     this.collection = collection(FirebaseClient.db, "importCalculator");
   }
 
-  create = async (data: ImportCalculator) => {
+  upsert = async (data: ImportCalculator) => {
     try {
       const docRef = await addDoc(this.collection, data);
       return docRef.id;
