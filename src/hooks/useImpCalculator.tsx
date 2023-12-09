@@ -45,6 +45,7 @@ interface Context {
   totalWeight: number;
   calculatorReport: ApexAxisChartSeries;
   submitForm: VoidFunction;
+  showError: boolean;
 }
 
 const ImpCalculatorContext = createContext<Context>({} as Context);
@@ -57,11 +58,17 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   const [totalWeight, setTotalWeight] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
   const [calculatorReport, setCalculatorReport] = useState<ApexAxisChartSeries>([]);
+  const [showError, setShowError] = useState(false);
 
   const handleOnSubmit = async (
     formData: ImportCalculator,
     actions: FormikHelpers<ImportCalculator>,
   ) => {
+    if (!formData.items.length) {
+      setShowError(true);
+      return;
+    }
+
     const result = await importCalculation.upsert(formData);
 
     if (result) {
@@ -94,6 +101,8 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       ...prevState,
       items: [...prevState.items, IMPORT_CALCULATOR_NEW_ROW],
     }));
+
+    setShowError(false);
   }, [setValues]);
 
   const deleteRow = useCallback(
@@ -180,6 +189,7 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       totalWeight,
       calculatorReport,
       submitForm,
+      showError,
     }),
     [
       addNote,
@@ -197,6 +207,7 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       totalWeight,
       calculatorReport,
       submitForm,
+      showError,
     ],
   );
   return (
