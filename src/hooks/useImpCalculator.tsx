@@ -64,7 +64,7 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       validationSchema: toFormikValidationSchema(ImportCalculatorValidationSchema),
     });
 
-  const debouncedValues = useDebounce<ImportCalculator>(values, 500);
+  const debouncedValues = useDebounce<ImportCalculator>(values, 1000);
 
   const addRow = useCallback(() => {
     setValues((prevState) => ({
