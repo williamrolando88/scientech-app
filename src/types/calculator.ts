@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import { z } from "zod";
 import {
   CalculatorSettingsValidationSchema,
@@ -10,6 +11,13 @@ export type ImportCalculatorMetadata = z.infer<typeof ImportCalculatorMetadataVa
 export type ImportCalculatorSettings = z.infer<typeof CalculatorSettingsValidationSchema>;
 export type ImportCalculatorQuotedItem = z.infer<typeof ItemsValidationSchema>;
 export type ImportCalculator = z.infer<typeof ImportCalculatorValidationSchema>;
+
+export type FirestoreImportCalculator = ImportCalculator & {
+  metadata: {
+    createdAt: Timestamp;
+    updatedAt: Timestamp;
+  };
+};
 
 export type ArticlesHeader = {
   name: keyof ImportCalculatorQuotedItem;

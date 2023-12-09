@@ -1,6 +1,6 @@
 "use client";
 
-import { FormikErrors, FormikTouched, useFormik } from "formik";
+import { FormikErrors, FormikHelpers, FormikTouched, useFormik } from "formik";
 import {
   ReactNode,
   createContext,
@@ -17,9 +17,9 @@ import {
   IMPORT_CALCULATOR_NEW_ROW,
 } from "../constants/importCalculator";
 import { localStorageKey } from "../constants/keys";
-import { storeCalculation } from "../lib/actions/calculator";
 import { calculateImportation, getImportReport } from "../lib/modules/calculator";
 import { ImportCalculatorValidationSchema } from "../lib/parsers/importCalculator";
+import importCalculation from "../services/firestore/importCalculator";
 import { ImportCalculator } from "../types/calculator";
 
 interface Props {
@@ -44,6 +44,7 @@ interface Context {
   totalCost: number;
   totalWeight: number;
   calculatorReport: ApexAxisChartSeries;
+  submitForm: VoidFunction;
 }
 
 const ImpCalculatorContext = createContext<Context>({} as Context);
@@ -57,12 +58,34 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   const [totalCost, setTotalCost] = useState(0);
   const [calculatorReport, setCalculatorReport] = useState<ApexAxisChartSeries>([]);
 
-  const { values, errors, touched, handleChange, resetForm, setValues, setFieldValue } =
-    useFormik<ImportCalculator>({
-      initialValues: calculatorInputs || IMPORT_CALCULATOR_INITIAL_VALUE,
-      onSubmit: () => alert("submit"),
-      validationSchema: toFormikValidationSchema(ImportCalculatorValidationSchema),
-    });
+  const handleOnSubmit = async (
+    formData: ImportCalculator,
+    actions: FormikHelpers<ImportCalculator>,
+  ) => {
+    const result = await importCalculation.upsert(formData);
+
+    if (result) {
+      actions.setSubmitting(false);
+      actions.resetForm();
+    }
+  };
+
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    resetForm,
+    setValues,
+    setFieldValue,
+    submitForm,
+    handleReset,
+    handleSubmit,
+  } = useFormik<ImportCalculator>({
+    initialValues: calculatorInputs || IMPORT_CALCULATOR_INITIAL_VALUE,
+    onSubmit: handleOnSubmit,
+    validationSchema: toFormikValidationSchema(ImportCalculatorValidationSchema),
+  });
 
   const debouncedValues = useDebounce<ImportCalculator>(values, 1000);
 
@@ -156,6 +179,7 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       totalCost,
       totalWeight,
       calculatorReport,
+      submitForm,
     }),
     [
       addNote,
@@ -172,11 +196,14 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       totalCost,
       totalWeight,
       calculatorReport,
+      submitForm,
     ],
   );
   return (
     <ImpCalculatorContext.Provider value={contextValues}>
-      <form action={storeCalculation}>{children}</form>
+      <form onSubmit={handleSubmit} onReset={handleReset}>
+        {children}
+      </form>
     </ImpCalculatorContext.Provider>
   );
 };

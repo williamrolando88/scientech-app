@@ -1,8 +1,5 @@
-import { IMPORT_CALCULATOR_INITIAL_VALUE } from "@/src/constants/importCalculator";
 import { ImportCalculator, ItemCalculationValues, LotSchema } from "@/src/types/calculator";
-import { set } from "lodash";
 import { round } from "mathjs";
-import { ImportCalculatorValidationSchema } from "../parsers/importCalculator";
 import { parseSafeNumber } from "../utils/numbers";
 
 export const calculateImportation = (inputs: ImportCalculator) => {
@@ -172,20 +169,4 @@ export const getImportReport = (articlesReport: ItemCalculationValues[]): ApexAx
       data: unitItemProfit,
     },
   ];
-};
-
-export const assembleImportCalculatorData = (formData: FormData): ImportCalculator => {
-  const rawObject = Object.fromEntries(formData.entries());
-
-  const structuredObject: ImportCalculator = { ...IMPORT_CALCULATOR_INITIAL_VALUE };
-
-  Object.entries(rawObject).forEach(([key, value]) => {
-    const parsedValue = isNaN(Number(value)) ? value : Number(value);
-    set(structuredObject, key, parsedValue);
-  });
-
-  const { items, settings, notes, metadata } =
-    ImportCalculatorValidationSchema.parse(structuredObject);
-
-  return { items, settings, notes, metadata };
 };

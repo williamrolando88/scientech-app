@@ -1,6 +1,7 @@
 import FirebaseClient from "@/src/lib/config/firebaseClient.config";
-import { ImportCalculator } from "@/src/types/calculator";
-import { addDoc, collection } from "firebase/firestore";
+import { ImportCalculatorValidationSchema } from "@/src/lib/parsers/importCalculator";
+import { FirestoreImportCalculator, ImportCalculator } from "@/src/types/calculator";
+import { FirestoreDataConverter, Timestamp, collection, doc, setDoc } from "firebase/firestore";
 
 class ImportCalculatorCollection {
   collection;
@@ -9,15 +10,35 @@ class ImportCalculatorCollection {
     this.collection = collection(FirebaseClient.db, "importCalculator");
   }
 
-  create = async (data: ImportCalculator) => {
+  upsert = async (data: ImportCalculator, id?: string) => {
     try {
-      const docRef = await addDoc(this.collection, data);
+      let docRef;
+
+      if (id) {
+        docRef = doc(this.collection, id).withConverter(this.converter());
+      } else {
+        docRef = doc(this.collection).withConverter(this.converter());
+      }
+
+      await setDoc(docRef, data);
       return docRef.id;
     } catch (e) {
       console.error("Error storing document: ", e);
       return null;
     }
   };
+
+  converter = (): FirestoreDataConverter<ImportCalculator, FirestoreImportCalculator> => ({
+    toFirestore: (data: ImportCalculator) => ({
+      ...data,
+      metadata: {
+        ...data.metadata,
+        createdAt: Timestamp.fromDate(data.metadata.createdAt || new Date()),
+        updatedAt: Timestamp.fromDate(new Date()),
+      },
+    }),
+    fromFirestore: (snap) => ImportCalculatorValidationSchema.parse(snap.data()),
+  });
 }
 
 const importCalculation = new ImportCalculatorCollection();
