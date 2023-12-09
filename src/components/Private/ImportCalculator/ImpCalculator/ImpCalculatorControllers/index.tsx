@@ -3,16 +3,10 @@
 import Button from "@/src/components/Shared/FormComponents/Button";
 import Iconify from "@/src/components/Shared/Iconify";
 import { useImpCalculatorContext } from "@/src/hooks/useImpCalculator";
-import { FC, useState } from "react";
-import { SaveConfirmation } from "./SaveConfirmation";
+import { FC } from "react";
 
 const ImpCalculatorControllers: FC = () => {
-  const [saveModalOpen, setSaveModalOpen] = useState(false);
   const { calculate, resetCalculator } = useImpCalculatorContext();
-
-  const openSaveModal = () => {
-    setSaveModalOpen(true);
-  };
 
   return (
     <section className="flex items-center justify-between rounded-md border p-4">
@@ -27,12 +21,14 @@ const ImpCalculatorControllers: FC = () => {
           Calcular
         </Button>
 
-        <Button type="button" icon={<Iconify icon="eva:save-outline" />} onClick={openSaveModal}>
+        <Button
+          type="button"
+          icon={<Iconify icon="eva:save-outline" />}
+          onClick={() => alert("Store")}
+        >
           Guardar
         </Button>
       </div>
-
-      <SaveConfirmation open={saveModalOpen} setOpen={setSaveModalOpen} />
     </section>
   );
 };
