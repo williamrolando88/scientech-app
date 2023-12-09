@@ -12,8 +12,15 @@ class ImportCalculatorCollection {
 
   upsert = async (data: ImportCalculator, id?: string) => {
     try {
-      const docRef = doc(this.collection, id).withConverter(this.converter());
-      await setDoc(docRef, data, { merge: true });
+      let docRef;
+
+      if (id) {
+        docRef = doc(this.collection, id).withConverter(this.converter());
+      } else {
+        docRef = doc(this.collection).withConverter(this.converter());
+      }
+
+      await setDoc(docRef, data);
       return docRef.id;
     } catch (e) {
       console.error("Error storing document: ", e);

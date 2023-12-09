@@ -1,6 +1,6 @@
 "use client";
 
-import { FormikErrors, FormikTouched, useFormik } from "formik";
+import { FormikErrors, FormikHelpers, FormikTouched, useFormik } from "formik";
 import {
   ReactNode,
   createContext,
@@ -19,6 +19,7 @@ import {
 import { localStorageKey } from "../constants/keys";
 import { calculateImportation, getImportReport } from "../lib/modules/calculator";
 import { ImportCalculatorValidationSchema } from "../lib/parsers/importCalculator";
+import importCalculation from "../services/firestore/importCalculator";
 import { ImportCalculator } from "../types/calculator";
 
 interface Props {
@@ -57,6 +58,18 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   const [totalCost, setTotalCost] = useState(0);
   const [calculatorReport, setCalculatorReport] = useState<ApexAxisChartSeries>([]);
 
+  const handleOnSubmit = async (
+    formData: ImportCalculator,
+    actions: FormikHelpers<ImportCalculator>,
+  ) => {
+    const result = await importCalculation.upsert(formData);
+
+    if (result) {
+      actions.setSubmitting(false);
+      actions.resetForm();
+    }
+  };
+
   const {
     values,
     errors,
@@ -70,7 +83,7 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
     handleSubmit,
   } = useFormik<ImportCalculator>({
     initialValues: calculatorInputs || IMPORT_CALCULATOR_INITIAL_VALUE,
-    onSubmit: () => alert("submit"),
+    onSubmit: handleOnSubmit,
     validationSchema: toFormikValidationSchema(ImportCalculatorValidationSchema),
   });
 

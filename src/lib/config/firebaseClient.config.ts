@@ -11,7 +11,9 @@ const firebaseConfig = {
   appId: process.env.APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(
+  JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CLIENT || "") || firebaseConfig,
+);
 
 const auth = getAuth(app);
 const db = getFirestore(app);
