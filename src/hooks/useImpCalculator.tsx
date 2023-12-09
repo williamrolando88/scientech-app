@@ -10,13 +10,12 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useDebounce, useEffectOnce, useLocalStorage } from "usehooks-ts";
+import { useDebounce, useEffectOnce } from "usehooks-ts";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import {
   IMPORT_CALCULATOR_INITIAL_VALUE,
   IMPORT_CALCULATOR_NEW_ROW,
 } from "../constants/importCalculator";
-import { localStorageKey } from "../constants/keys";
 import { calculateImportation, getImportReport } from "../lib/modules/calculator";
 import { ImportCalculatorValidationSchema } from "../lib/parsers/importCalculator";
 import importCalculation from "../services/firestore/importCalculator";
@@ -51,10 +50,6 @@ interface Context {
 const ImpCalculatorContext = createContext<Context>({} as Context);
 
 export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
-  const [calculatorInputs, setCalculatorInputs] = useLocalStorage<ImportCalculator>(
-    localStorageKey.importCalculator,
-    IMPORT_CALCULATOR_INITIAL_VALUE,
-  );
   const [totalWeight, setTotalWeight] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
   const [calculatorReport, setCalculatorReport] = useState<ApexAxisChartSeries>([]);
@@ -89,7 +84,7 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
     handleReset,
     handleSubmit,
   } = useFormik<ImportCalculator>({
-    initialValues: calculatorInputs || IMPORT_CALCULATOR_INITIAL_VALUE,
+    initialValues: IMPORT_CALCULATOR_INITIAL_VALUE,
     onSubmit: handleOnSubmit,
     validationSchema: toFormikValidationSchema(ImportCalculatorValidationSchema),
   });
@@ -136,10 +131,9 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   );
 
   const resetCalculator = useCallback(() => {
-    setCalculatorInputs(IMPORT_CALCULATOR_INITIAL_VALUE);
     resetForm({ values: IMPORT_CALCULATOR_INITIAL_VALUE });
     setCalculatorReport([]);
-  }, [resetForm, setCalculatorInputs]);
+  }, [resetForm]);
 
   const calculate = useCallback(() => {
     const { pricesArray, articlesReport } = calculateImportation(values);
@@ -156,18 +150,16 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
   }, [setValues, values]);
 
   useEffect(() => {
-    setCalculatorInputs(debouncedValues);
     setTotalCost(
       debouncedValues.items.reduce((acc, item) => acc + item.unitCost * item.quantity, 0),
     );
     setTotalWeight(
       debouncedValues.items.reduce((acc, item) => acc + item.unitWeight * item.quantity, 0),
     );
-  }, [debouncedValues, setCalculatorInputs]);
+  }, [debouncedValues]);
 
   useEffectOnce(() => {
     if (fetchedValues) {
-      setCalculatorInputs(fetchedValues);
       setValues(fetchedValues);
     }
   });
