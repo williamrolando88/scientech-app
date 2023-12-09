@@ -6,7 +6,7 @@ import { useImpCalculatorContext } from "@/src/hooks/useImpCalculator";
 import { FC } from "react";
 
 const ImpCalculatorControllers: FC = () => {
-  const { calculate, resetCalculator } = useImpCalculatorContext();
+  const { calculate, resetCalculator, submitForm } = useImpCalculatorContext();
 
   return (
     <section className="flex items-center justify-between rounded-md border p-4">
@@ -21,11 +21,7 @@ const ImpCalculatorControllers: FC = () => {
           Calcular
         </Button>
 
-        <Button
-          type="button"
-          icon={<Iconify icon="eva:save-outline" />}
-          onClick={() => alert("Store")}
-        >
+        <Button type="button" icon={<Iconify icon="eva:save-outline" />} onClick={submitForm}>
           Guardar
         </Button>
       </div>
