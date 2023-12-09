@@ -28,7 +28,7 @@ export const ItemsValidationSchema = z.object({
 
 export const ImportCalculatorValidationSchema = z.object({
   settings: CalculatorSettingsValidationSchema,
-  items: ItemsValidationSchema.array(),
+  items: ItemsValidationSchema.array().nonempty(),
   notes: z.string().array(),
   metadata: ImportCalculatorMetadataValidationSchema,
 });
