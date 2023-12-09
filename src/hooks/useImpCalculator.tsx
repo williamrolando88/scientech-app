@@ -101,6 +101,8 @@ export const ImpCalculatorProvider = ({ children, fetchedValues }: Props) => {
       ...prevState,
       items: [...prevState.items, IMPORT_CALCULATOR_NEW_ROW],
     }));
+
+    setShowError(false);
   }, [setValues]);
 
   const deleteRow = useCallback(
