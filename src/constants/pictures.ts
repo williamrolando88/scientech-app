@@ -11,11 +11,6 @@ import callCenter from "@/src/assets/images/call-center.webp";
 import hero from "@/src/assets/images/hero-picture.webp";
 import hvac from "@/src/assets/images/hvac.webp";
 import logistic from "@/src/assets/images/logistica.webp";
-import automationPH from "@/src/assets/placeholders/automation.webp";
-import callCenterPH from "@/src/assets/placeholders/call-center.webp";
-import heroPH from "@/src/assets/placeholders/hero-picture.webp";
-import hvacPH from "@/src/assets/placeholders/hvac.webp";
-import logisticPH from "@/src/assets/placeholders/logistica.webp";
 import logoPosital from "@/src/assets/providersLogos/POSITAL_logo.svg";
 import logoElesa from "@/src/assets/providersLogos/elesa-vector-logo.svg";
 import logoHedland from "@/src/assets/providersLogos/hedland.png";
@@ -56,17 +51,3 @@ const PICTURES = {
 };
 
 export default PICTURES;
-
-export const PLACEHOLDERS = {
-  homePage: {
-    hero: heroPH,
-    cards: {
-      logistic: logisticPH,
-      hvac: hvacPH,
-      automation: automationPH,
-    },
-  },
-  contactPage: {
-    callCenterPH,
-  },
-};
