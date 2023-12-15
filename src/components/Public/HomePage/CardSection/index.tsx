@@ -12,7 +12,6 @@ const CardSection: FC = () => {
             title={card.title}
             src={card.src as unknown as string}
             caption={card.caption}
-            placeholder={card.placeholderSrc as unknown as string}
           />
         ))}
       </div>

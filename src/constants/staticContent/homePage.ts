@@ -1,9 +1,8 @@
-import PICTURES, { PLACEHOLDERS } from "../pictures";
+import PICTURES from "../pictures";
 
 export const heroSectionContent = {
   title: "Tranquilo lo tenemos cubierto.*",
-  subtitle:
-    "*Creamos soluciones para que tú puedas concentrarte en lo que en realidad importa",
+  subtitle: "*Creamos soluciones para que tú puedas concentrarte en lo que en realidad importa",
   CTALabel: "Contáctanos",
 };
 
@@ -14,21 +13,18 @@ export const cardsSectionContent = {
       src: PICTURES.homePage.cards.logistic,
       caption:
         "Ofrecemos soluciones a medida para proyectos industriales. Nos encargamos de buscar y seleccionar los mejores proveedores internacionales de insumos industriales y gestionamos todo el proceso logístico hasta su destino.",
-      placeholderSrc: PLACEHOLDERS.homePage.cards.logistic,
     },
     {
       title: "HVAC",
       src: PICTURES.homePage.cards.hvac,
       caption:
         "En nuestra empresa, nos enfocamos en tu comodidad y satisfacción. Contamos con expertos que brindan soluciones personalizadas. Realizamos instalaciones, reparaciones y mantenimiento de sistemas de climatización.",
-      placeholderSrc: PLACEHOLDERS.homePage.cards.hvac,
     },
     {
       title: "Automatización Industrial",
       src: PICTURES.homePage.cards.automation,
       caption:
         "Contamos con técnicos expertos en software y hardware para controlar y monitorear sus máquinas y equipos. Mejoramos la productividad, eficiencia y seguridad de sus procesos mediante soluciones de automatización industrial.",
-      placeholderSrc: PLACEHOLDERS.homePage.cards.automation,
     },
   ],
 };
