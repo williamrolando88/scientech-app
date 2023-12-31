@@ -20,16 +20,10 @@ export const contactCTAContent = {
   subtitle: "Información de Contacto",
   contactInfo: [
     {
-      title: "Ventas",
+      title: "Servicio al Cliente",
       icon: "mdi:phone-in-talk",
-      phoneNumber: "+593 98 326 0442",
+      phoneNumber: "+593 98 494 8138",
       email: "ventas@scientech-ec.com",
-    },
-    {
-      title: "Proyectos",
-      icon: "fa6-solid:helmet-safety",
-      phoneNumber: "+593 99 730 1590",
-      email: "proyectos@scientech-ec.com",
     },
   ],
 };
